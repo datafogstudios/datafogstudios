@@ -49,21 +49,23 @@
         .container { max-width: 1400px; margin: 0 auto; padding: 1.5rem 2rem 3rem; }
         .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.8rem; margin-bottom: 2rem; }
         .card { background: var(--light-card); padding: 1.8rem; border-radius: 18px; box-shadow: 0 8px 30px rgba(0,0,0,0.08); border: 1px solid var(--border); text-align: center; }
-        .progress-circle { width: 130px; height: 130px; border-radius: 50%; background: conic-gradient(var(--primary) 0% var(--progress, 65%), #e2e8f0 var(--progress, 65%) 100%); display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; }
+        .progress-circle { width: 130px; height: 130px; border-radius: 50%; background: conic-gradient(var(--primary) 0% var(--progress, 0%), #e2e8f0 var(--progress, 0%) 100%); display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; }
         .progress-circle span { font-size: 1.8rem; font-weight: 900; font-family: 'Montserrat', sans-serif; color: var(--dark-text); }
         .streak { font-size: 2.8rem; font-weight: 900; font-family: 'Montserrat', sans-serif; color: var(--success); margin: 0.5rem 0; }
         .courses-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.6rem; margin-bottom: 2rem; }
         .course-card { background: var(--light-card); border-radius: 18px; padding: 1.4rem; box-shadow: 0 8px 30px rgba(0,0,0,0.08); border: 1px solid var(--border); transition: .3s; }
         .course-card:hover { transform: translateY(-6px); }
         .progress-bar { height: 10px; background: #e2e8f0; border-radius: 10px; overflow: hidden; margin: 1rem 0; }
-        .progress-fill { height: 100%; background: linear-gradient(135deg, var(--primary), var(--success)); border-radius: 10px; width: var(--fill, 45%); transition: width 0.8s ease; }
+        .progress-fill { height: 100%; background: linear-gradient(135deg, var(--primary), var(--success)); border-radius: 10px; width: var(--fill, 0%); transition: width 0.8s ease; }
         .achievements-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: 1.4rem; }
-        .achievement { text-align: center; opacity: var(--achieved, 0.4); transition: .3s; }
+        .achievement { text-align: center; opacity: var(--achieved, 0.3); transition: .3s; }
         .achievement.unlocked { opacity: 1; }
         .achievement i { font-size: 2.8rem; color: var(--accent); margin-bottom: 0.5rem; }
         .btn { background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: white; padding: 0.7rem 1.6rem; border-radius: 50px; font-weight: 600; text-decoration: none; display: inline-block; transition: .3s; font-size: 0.95rem; }
         .btn:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(79,70,229,0.3); }
-        .wishlist-empty { text-align: center; padding: 2rem; color: var(--text-muted); font-size: 1.1rem; }
+        .empty-state { grid-column: 1 / -1; text-align: center; padding: 3rem; }
+        .empty-state i { font-size: 4rem; color: var(--primary); margin-bottom: 1rem; }
+        .empty-state p { font-size: 1.2rem; color: var(--text-muted); margin-bottom: 1.5rem; }
         footer { background: #f1f5f9; padding: 3rem 2rem 2rem; margin-top: 2rem; text-align: center; color: var(--text-muted); font-size: 0.9rem; }
         @media (max-width: 992px) { .grid-2 { grid-template-columns: 1fr; } }
         @media (max-width: 768px) { .courses-grid { grid-template-columns: 1fr; } }
@@ -97,63 +99,50 @@
         <div class="grid-2">
             <div class="card">
                 <h2 style="font-family:'Montserrat',sans-serif; font-size:1.8rem; margin-bottom:1rem;">Overall Progress</h2>
-                <div class="progress-circle" style="--progress:65%">
-                    <span>65%</span>
+                <div class="progress-circle" style="--progress:0%">
+                    <span>0%</span>
                 </div>
-                <p>You're doing great — keep learning!</p>
+                <p>Start your first course to see progress!</p>
             </div>
             <div class="card">
                 <h2 style="font-family:'Montserrat',sans-serif; font-size:1.8rem; margin-bottom:1rem;">Current Streak</h2>
-                <div class="streak">12 🔥</div>
-                <p>Days in a row — amazing consistency!</p>
+                <div class="streak">0</div>
+                <p>Begin learning today to start your streak!</p>
             </div>
         </div>
 
         <h2 style="font-family:'Montserrat',sans-serif; font-size:2.2rem; text-align:center; margin:2rem 0 1.5rem;">Enrolled Courses</h2>
         <div class="courses-grid">
-            <div class="course-card">
-                <h3>Python Mastery</h3>
-                <div class="progress-bar"><div class="progress-fill" style="--fill:85%"></div></div>
-                <p>85% Complete • 34/40 lessons</p>
-                <a href="courses.html" class="btn">Continue Learning</a>
-            </div>
-            <div class="course-card">
-                <h3>JavaScript Full Stack</h3>
-                <div class="progress-bar"><div class="progress-fill" style="--fill:45%"></div></div>
-                <p>45% Complete • 22/50 lessons</p>
-                <a href="courses.html" class="btn">Continue Learning</a>
-            </div>
-            <div class="course-card">
-                <h3>Rust Systems Programming</h3>
-                <div class="progress-bar"><div class="progress-fill" style="--fill:20%"></div></div>
-                <p>20% Complete • 7/35 lessons</p>
-                <a href="courses.html" class="btn">Continue Learning</a>
+            <div class="empty-state">
+                <i class="fas fa-book-open"></i>
+                <p>You haven't enrolled in any courses yet.</p>
+                <a href="courses.html" class="btn">Explore Courses & Start Learning</a>
             </div>
         </div>
 
         <h2 style="font-family:'Montserrat',sans-serif; font-size:2.2rem; text-align:center; margin:2rem 0 1.5rem;">Your Achievements</h2>
         <div class="achievements-grid card">
-            <div class="achievement unlocked">
+            <div class="achievement" style="--achieved:0.3;">
                 <i class="fas fa-trophy"></i>
                 <p>First Course</p>
             </div>
-            <div class="achievement unlocked">
+            <div class="achievement" style="--achieved:0.3;">
                 <i class="fas fa-fire"></i>
                 <p>7-Day Streak</p>
             </div>
-            <div class="achievement unlocked">
+            <div class="achievement" style="--achieved:0.3;">
                 <i class="fas fa-medal"></i>
                 <p>Python Beginner</p>
             </div>
-            <div class="achievement" style="--achieved:0.4;">
+            <div class="achievement" style="--achieved:0.3;">
                 <i class="fas fa-graduation-cap"></i>
                 <p>First Certificate</p>
             </div>
-            <div class="achievement" style="--achieved:0.4;">
+            <div class="achievement" style="--achieved:0.3;">
                 <i class="fas fa-star"></i>
                 <p>Master Level</p>
             </div>
-            <div class="achievement" style="--achieved:0.4;">
+            <div class="achievement" style="--achieved:0.3;">
                 <i class="fas fa-crown"></i>
                 <p>Top Learner</p>
             </div>
@@ -161,7 +150,11 @@
 
         <h2 style="font-family:'Montserrat',sans-serif; font-size:2.2rem; text-align:center; margin:2rem 0 1.5rem;">Wishlist</h2>
         <div id="wishlist" class="courses-grid">
-            <p class="wishlist-empty">Your wishlist is empty. Explore courses to add some!</p>
+            <div class="empty-state">
+                <i class="far fa-heart"></i>
+                <p>Your wishlist is empty.</p>
+                <a href="courses.html" class="btn">Explore Courses</a>
+            </div>
         </div>
     </div>
 
@@ -173,13 +166,21 @@
     <script src="main.js"></script>
 
     <script>
+        // Dynamically populate wishlist from localStorage
         const wishlistContainer = document.getElementById('wishlist');
         const wishlist = JSON.parse(localStorage.getItem('wishlist') || '[]');
 
         if (wishlist.length === 0) {
-            wishlistContainer.innerHTML = '<p class="wishlist-empty">Your wishlist is empty. Explore courses to add some!</p>';
+            wishlistContainer.innerHTML = `
+                <div class="empty-state">
+                    <i class="far fa-heart"></i>
+                    <p>Your wishlist is empty.</p>
+                    <a href="courses.html" class="btn">Explore Courses</a>
+                </div>
+            `;
         } else {
             wishlistContainer.innerHTML = '';
+            // Simple mock data for display (in production, pull from full course list)
             const mockCourses = {
                 "Python Mastery": { img: "https://cdn.autonomous.ai/production/ecm/240425/Dual-Monitor-Setup-Ideas-Boost-Productivity-Efficiency11.webp", desc: "Complete Python from basics to advanced" },
                 "JavaScript Full Stack": { img: "https://cdn.autonomous.ai/production/ecm/240425/Dual-Monitor-Setup-Ideas-Boost-Productivity-Efficiency6.webp", desc: "Frontend, Backend, and modern frameworks" },
@@ -191,8 +192,8 @@
                 const card = document.createElement('div');
                 card.className = 'course-card';
                 card.innerHTML = `
-                    <img src="${course.img}" alt="${title}" class="course-image">
-                    <div class="course-content">
+                    <img src="${course.img}" alt="${title}" style="width:100%;height:150px;object-fit:cover;border-radius:12px;">
+                    <div style="padding:1rem;">
                         <h3>${title}</h3>
                         <p>${course.desc}</p>
                         <a href="courses.html" class="btn">Enroll Now</a>
