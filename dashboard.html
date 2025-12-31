@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - DataFog Studios™</title>
+    <meta name="description" content="Your personal learning dashboard – track progress, view achievements, continue courses, and manage your wishlist at DataFog Studios.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --primary-dark: #4338ca;
+            --accent: #f59e0b;
+            --purple: #8b5cf6;
+            --success: #10b981;
+            --light-bg: #f8fafc;
+            --light-card: #ffffff;
+            --dark-text: #1e293b;
+            --text-muted: #64748b;
+            --border: rgba(0, 0, 0, 0.06);
+            --header-height: 80px;
+        }
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --light-bg: #0f172a;
+                --light-card: #1e293b;
+                --dark-text: #f8fafc;
+                --text-muted: #94a3b8;
+                --border: rgba(255, 255, 255, 0.1);
+            }
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Open Sans', sans-serif; background: var(--light-bg); color: var(--dark-text); line-height: 1.6; padding-top: var(--header-height); }
+        .header { background: rgba(255,255,255,0.92); backdrop-filter: blur(20px); position: fixed; width: 100%; top: 0; z-index: 1000; border-bottom: 1px solid var(--border); box-shadow: 0 4px 30px rgba(0,0,0,0.08); height: var(--header-height); }
+        .nav-container { max-width: 1400px; margin: auto; display: flex; justify-content: space-between; align-items: center; padding: 0 2rem; height: 100%; }
+        .logo { font-size: 1.8rem; font-weight: 900; font-family: 'Montserrat', sans-serif; background: linear-gradient(135deg, var(--primary), var(--purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .nav-links a { color: var(--dark-text); text-decoration: none; font-weight: 500; margin-left: 2rem; font-size: 1rem; }
+        .nav-buttons { display: flex; align-items: center; gap: 1rem; }
+        .support-btn, .dashboard-btn { padding: 0.6rem 1.6rem; border-radius: 50px; font-weight: 600; transition: .3s; text-decoration: none; }
+        .support-btn { background: linear-gradient(135deg, var(--accent), #ec4899); color: white; }
+        .dashboard-btn { background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: white; }
+        .hero { min-height: 45vh; background: linear-gradient(rgba(248,250,252,0.95), rgba(248,250,252,0.85)), url('https://images.unsplash.com/photo-1517180107642-7849b704b7d0?auto=format&fit=crop&w=2070&q=80') center/cover no-repeat; display: flex; align-items: center; justify-content: center; text-align: center; padding: 0 1.5rem; }
+        .hero h1 { font-family: 'Montserrat', sans-serif; font-size: clamp(2.2rem, 5.5vw, 3.4rem); font-weight: 900; color: var(--dark-text); margin-bottom: 0.5rem; }
+        .hero p { font-size: 1.1rem; max-width: 700px; margin: 0 auto; color: var(--text-muted); }
+        .container { max-width: 1400px; margin: 0 auto; padding: 1.5rem 2rem 3rem; }
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.8rem; margin-bottom: 2rem; }
+        .card { background: var(--light-card); padding: 1.8rem; border-radius: 18px; box-shadow: 0 8px 30px rgba(0,0,0,0.08); border: 1px solid var(--border); text-align: center; }
+        .progress-circle { width: 130px; height: 130px; border-radius: 50%; background: conic-gradient(var(--primary) 0% var(--progress, 65%), #e2e8f0 var(--progress, 65%) 100%); display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; }
+        .progress-circle span { font-size: 1.8rem; font-weight: 900; font-family: 'Montserrat', sans-serif; color: var(--dark-text); }
+        .streak { font-size: 2.8rem; font-weight: 900; font-family: 'Montserrat', sans-serif; color: var(--success); margin: 0.5rem 0; }
+        .courses-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.6rem; margin-bottom: 2rem; }
+        .course-card { background: var(--light-card); border-radius: 18px; padding: 1.4rem; box-shadow: 0 8px 30px rgba(0,0,0,0.08); border: 1px solid var(--border); transition: .3s; }
+        .course-card:hover { transform: translateY(-6px); }
+        .progress-bar { height: 10px; background: #e2e8f0; border-radius: 10px; overflow: hidden; margin: 1rem 0; }
+        .progress-fill { height: 100%; background: linear-gradient(135deg, var(--primary), var(--success)); border-radius: 10px; width: var(--fill, 45%); transition: width 0.8s ease; }
+        .achievements-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: 1.4rem; }
+        .achievement { text-align: center; opacity: var(--achieved, 0.4); transition: .3s; }
+        .achievement.unlocked { opacity: 1; }
+        .achievement i { font-size: 2.8rem; color: var(--accent); margin-bottom: 0.5rem; }
+        .btn { background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: white; padding: 0.7rem 1.6rem; border-radius: 50px; font-weight: 600; text-decoration: none; display: inline-block; transition: .3s; font-size: 0.95rem; }
+        .btn:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(79,70,229,0.3); }
+        .wishlist-empty { text-align: center; padding: 2rem; color: var(--text-muted); font-size: 1.1rem; }
+        footer { background: #f1f5f9; padding: 3rem 2rem 2rem; margin-top: 2rem; text-align: center; color: var(--text-muted); font-size: 0.9rem; }
+        @media (max-width: 992px) { .grid-2 { grid-template-columns: 1fr; } }
+        @media (max-width: 768px) { .courses-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="nav-container">
+            <div class="logo">DataFog Studios™</div>
+            <nav class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="courses.html">Courses</a>
+                <a href="index.html#features">Features</a>
+                <a href="pages/contact.html">Contact</a>
+            </nav>
+            <div class="nav-buttons">
+                <a href="dashboard.html" class="dashboard-btn">My Dashboard</a>
+                <a href="pages/support.html" class="support-btn">Support Us</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div>
+            <h1>Your Learning Dashboard</h1>
+            <p>Track progress, continue courses, and achieve your goals</p>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="grid-2">
+            <div class="card">
+                <h2 style="font-family:'Montserrat',sans-serif; font-size:1.8rem; margin-bottom:1rem;">Overall Progress</h2>
+                <div class="progress-circle" style="--progress:65%">
+                    <span>65%</span>
+                </div>
+                <p>You're doing great — keep learning!</p>
+            </div>
+            <div class="card">
+                <h2 style="font-family:'Montserrat',sans-serif; font-size:1.8rem; margin-bottom:1rem;">Current Streak</h2>
+                <div class="streak">12 🔥</div>
+                <p>Days in a row — amazing consistency!</p>
+            </div>
+        </div>
+
+        <h2 style="font-family:'Montserrat',sans-serif; font-size:2.2rem; text-align:center; margin:2rem 0 1.5rem;">Enrolled Courses</h2>
+        <div class="courses-grid">
+            <div class="course-card">
+                <h3>Python Mastery</h3>
+                <div class="progress-bar"><div class="progress-fill" style="--fill:85%"></div></div>
+                <p>85% Complete • 34/40 lessons</p>
+                <a href="courses.html" class="btn">Continue Learning</a>
+            </div>
+            <div class="course-card">
+                <h3>JavaScript Full Stack</h3>
+                <div class="progress-bar"><div class="progress-fill" style="--fill:45%"></div></div>
+                <p>45% Complete • 22/50 lessons</p>
+                <a href="courses.html" class="btn">Continue Learning</a>
+            </div>
+            <div class="course-card">
+                <h3>Rust Systems Programming</h3>
+                <div class="progress-bar"><div class="progress-fill" style="--fill:20%"></div></div>
+                <p>20% Complete • 7/35 lessons</p>
+                <a href="courses.html" class="btn">Continue Learning</a>
+            </div>
+        </div>
+
+        <h2 style="font-family:'Montserrat',sans-serif; font-size:2.2rem; text-align:center; margin:2rem 0 1.5rem;">Your Achievements</h2>
+        <div class="achievements-grid card">
+            <div class="achievement unlocked">
+                <i class="fas fa-trophy"></i>
+                <p>First Course</p>
+            </div>
+            <div class="achievement unlocked">
+                <i class="fas fa-fire"></i>
+                <p>7-Day Streak</p>
+            </div>
+            <div class="achievement unlocked">
+                <i class="fas fa-medal"></i>
+                <p>Python Beginner</p>
+            </div>
+            <div class="achievement" style="--achieved:0.4;">
+                <i class="fas fa-graduation-cap"></i>
+                <p>First Certificate</p>
+            </div>
+            <div class="achievement" style="--achieved:0.4;">
+                <i class="fas fa-star"></i>
+                <p>Master Level</p>
+            </div>
+            <div class="achievement" style="--achieved:0.4;">
+                <i class="fas fa-crown"></i>
+                <p>Top Learner</p>
+            </div>
+        </div>
+
+        <h2 style="font-family:'Montserrat',sans-serif; font-size:2.2rem; text-align:center; margin:2rem 0 1.5rem;">Wishlist</h2>
+        <div id="wishlist" class="courses-grid">
+            <p class="wishlist-empty">Your wishlist is empty. Explore courses to add some!</p>
+        </div>
+    </div>
+
+    <footer>
+        <p>© <script>document.write(new Date().getFullYear())</script> DataFog Studios™. Created with love by Hassan Mohamed. All rights reserved.</p>
+        <a href="index.html">Back to Home</a>
+    </footer>
+
+    <script src="main.js"></script>
+
+    <script>
+        const wishlistContainer = document.getElementById('wishlist');
+        const wishlist = JSON.parse(localStorage.getItem('wishlist') || '[]');
+
+        if (wishlist.length === 0) {
+            wishlistContainer.innerHTML = '<p class="wishlist-empty">Your wishlist is empty. Explore courses to add some!</p>';
+        } else {
+            wishlistContainer.innerHTML = '';
+            const mockCourses = {
+                "Python Mastery": { img: "https://cdn.autonomous.ai/production/ecm/240425/Dual-Monitor-Setup-Ideas-Boost-Productivity-Efficiency11.webp", desc: "Complete Python from basics to advanced" },
+                "JavaScript Full Stack": { img: "https://cdn.autonomous.ai/production/ecm/240425/Dual-Monitor-Setup-Ideas-Boost-Productivity-Efficiency6.webp", desc: "Frontend, Backend, and modern frameworks" },
+                "Rust Systems Programming": { img: "https://image.benq.com/is/image/benqco/10-5?$ResponsivePreset$", desc: "Safe concurrent systems and WebAssembly" }
+            };
+
+            wishlist.forEach(title => {
+                const course = mockCourses[title] || { img: "https://via.placeholder.com/300x150?text=Course+Image", desc: "Course description" };
+                const card = document.createElement('div');
+                card.className = 'course-card';
+                card.innerHTML = `
+                    <img src="${course.img}" alt="${title}" class="course-image">
+                    <div class="course-content">
+                        <h3>${title}</h3>
+                        <p>${course.desc}</p>
+                        <a href="courses.html" class="btn">Enroll Now</a>
+                    </div>
+                `;
+                wishlistContainer.appendChild(card);
+            });
+        }
+    </script>
+</body>
+</html>

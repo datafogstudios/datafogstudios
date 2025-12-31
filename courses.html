@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Courses - DataFog Studios™</title>
+    <meta name="description" content="Explore all free programming courses at DataFog Studios. Filter by language, difficulty, duration. Master Python, JavaScript, Java, and more with interactive lessons and projects.">
+    <meta name="keywords" content="free programming courses, learn coding online, Python course, JavaScript course, full stack development, web development courses">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --primary-dark: #4338ca;
+            --accent: #f59e0b;
+            --purple: #8b5cf6;
+            --light-bg: #f8fafc;
+            --light-card: #ffffff;
+            --dark-text: #1e293b;
+            --text-muted: #64748b;
+            --border: rgba(0, 0, 0, 0.06);
+            --header-height: 80px;
+        }
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --light-bg: #0f172a;
+                --light-card: #1e293b;
+                --dark-text: #f8fafc;
+                --text-muted: #94a3b8;
+                --border: rgba(255, 255, 255, 0.1);
+            }
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Open Sans', sans-serif; background: var(--light-bg); color: var(--dark-text); line-height: 1.6; padding-top: var(--header-height); }
+        .header { background: rgba(255,255,255,0.92); backdrop-filter: blur(20px); position: fixed; width: 100%; top: 0; z-index: 1000; border-bottom: 1px solid var(--border); box-shadow: 0 4px 30px rgba(0,0,0,0.08); height: var(--header-height); }
+        .nav-container { max-width: 1400px; margin: auto; display: flex; justify-content: space-between; align-items: center; padding: 0 2rem; height: 100%; }
+        .logo { font-size: 1.8rem; font-weight: 900; font-family: 'Montserrat', sans-serif; background: linear-gradient(135deg, var(--primary), var(--purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .nav-links a { color: var(--dark-text); text-decoration: none; font-weight: 500; margin-left: 2rem; font-size: 1rem; }
+        .nav-buttons { display: flex; align-items: center; gap: 1rem; }
+        .support-btn, .dashboard-btn { padding: 0.6rem 1.6rem; border-radius: 50px; font-weight: 600; transition: .3s; text-decoration: none; }
+        .support-btn { background: linear-gradient(135deg, var(--accent), #ec4899); color: white; }
+        .dashboard-btn { background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: white; }
+        .hero { min-height: 45vh; background: linear-gradient(rgba(248,250,252,0.95), rgba(248,250,252,0.85)), url('https://images.unsplash.com/photo-1517180107642-7849b704b7d0?auto=format&fit=crop&w=2070&q=80') center/cover no-repeat; display: flex; align-items: center; justify-content: center; text-align: center; padding: 0 1.5rem; }
+        .hero h1 { font-family: 'Montserrat', sans-serif; font-size: clamp(2.2rem, 5.5vw, 3.4rem); font-weight: 900; color: var(--dark-text); margin-bottom: 0.5rem; }
+        .hero p { font-size: 1.1rem; max-width: 700px; margin: 0 auto; color: var(--text-muted); }
+        .container { max-width: 1400px; margin: 0 auto; padding: 1rem 2rem 3rem; display: grid; grid-template-columns: 260px 1fr; gap: 2rem; }
+        .sidebar { background: var(--light-card); padding: 1.4rem; border-radius: 18px; box-shadow: 0 8px 30px rgba(0,0,0,0.08); height: fit-content; position: sticky; top: calc(var(--header-height) + 10px); }
+        .sidebar h3 { font-family: 'Montserrat', sans-serif; font-size: 1.2rem; margin-bottom: 1rem; color: var(--dark-text); }
+        .filter-group { margin-bottom: 1.4rem; }
+        .filter-group label { display: block; margin-bottom: 0.6rem; cursor: pointer; font-size: 0.95rem; }
+        .filter-group input[type="checkbox"] { margin-right: 0.7rem; accent-color: var(--primary); }
+        .search-bar { width: 100%; padding: 0.9rem 1.2rem; border: 1px solid var(--border); border-radius: 50px; font-size: 1rem; margin-bottom: 1.4rem; }
+        .courses-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.6rem; }
+        .course-card { background: var(--light-card); border-radius: 18px; overflow: hidden; border: 1px solid var(--border); box-shadow: 0 8px 30px rgba(0,0,0,0.08); transition: .3s; position: relative; }
+        .course-card:hover { transform: translateY(-6px); box-shadow: 0 16px 50px rgba(79,70,229,0.2); }
+        .course-image { width: 100%; height: 150px; object-fit: cover; }
+        .course-content { padding: 1.2rem; }
+        .course-badge { background: rgba(245,158,11,0.1); color: var(--accent); padding: 0.3rem 0.8rem; border-radius: 50px; font-size: 0.8rem; font-weight: 700; margin-bottom: 0.8rem; border: 1px solid var(--accent); }
+        .wishlist { position: absolute; top: 1rem; right: 1rem; font-size: 1.5rem; color: #e2e8f0; cursor: pointer; transition: .3s; z-index: 10; }
+        .wishlist.active { color: #ef4444; }
+        .wishlist:hover { color: #ef4444; }
+        .btn { background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: white; padding: 0.7rem 1.6rem; border-radius: 50px; font-weight: 600; text-decoration: none; display: inline-block; margin-top: 0.8rem; transition: .3s; font-size: 0.95rem; }
+        .btn:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(79,70,229,0.3); }
+        .btn-preview { background: transparent; color: var(--primary); border: 2px solid var(--primary); margin-left: 0.7rem; }
+        .btn-preview:hover { background: var(--primary); color: white; }
+        footer { background: #f1f5f9; padding: 3rem 2rem 2rem; margin-top: 2rem; text-align: center; color: var(--text-muted); font-size: 0.9rem; }
+        @media (max-width: 992px) {
+            .container { grid-template-columns: 1fr; padding: 1rem 1.5rem 2rem; }
+            .sidebar { position: static; }
+        }
+        @media (max-width: 768px) {
+            .courses-grid { grid-template-columns: 1fr; }
+            .course-image { height: 160px; }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="nav-container">
+            <div class="logo">DataFog Studios™</div>
+            <nav class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="courses.html">Courses</a>
+                <a href="index.html#features">Features</a>
+                <a href="pages/contact.html">Contact</a>
+            </nav>
+            <div class="nav-buttons">
+                <a href="dashboard.html" class="dashboard-btn">My Dashboard</a>
+                <a href="pages/support.html" class="support-btn">Support Us</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div>
+            <h1>All Courses</h1>
+            <p>Explore our complete catalog of free programming courses</p>
+        </div>
+    </section>
+
+    <div class="container">
+        <aside class="sidebar">
+            <input type="text" id="search" class="search-bar" placeholder="Search courses...">
+
+            <div class="filter-group">
+                <h3>Language</h3>
+                <label><input type="checkbox" value="Python"> Python</label>
+                <label><input type="checkbox" value="JavaScript"> JavaScript</label>
+                <label><input type="checkbox" value="Java"> Java</label>
+                <label><input type="checkbox" value="C"> C</label>
+                <label><input type="checkbox" value="C++"> C++</label>
+                <label><input type="checkbox" value="C#"> C#</label>
+                <label><input type="checkbox" value="Go"> Go</label>
+                <label><input type="checkbox" value="Rust"> Rust</label>
+                <label><input type="checkbox" value="TypeScript"> TypeScript</label>
+                <label><input type="checkbox" value="PHP"> PHP</label>
+            </div>
+
+            <div class="filter-group">
+                <h3>Difficulty</h3>
+                <label><input type="checkbox" value="Beginner"> Beginner</label>
+                <label><input type="checkbox" value="Intermediate"> Intermediate</label>
+                <label><input type="checkbox" value="Advanced"> Advanced</label>
+            </div>
+
+            <div class="filter-group">
+                <h3>Duration</h3>
+                <label><input type="checkbox" value="<20"> Less than 20 hours</label>
+                <label><input type="checkbox" value="20-40"> 20-40 hours</label>
+                <label><input type="checkbox" value=">40"> More than 40 hours</label>
+            </div>
+        </aside>
+
+        <main class="courses-grid" id="courseGrid">
+            <!-- Courses injected by JavaScript -->
+        </main>
+    </div>
+
+    <footer>
+        <p>© <script>document.write(new Date().getFullYear())</script> DataFog Studios™. Created with love by Hassan Mohamed. All rights reserved.</p>
+        <a href="index.html">Back to Home</a>
+    </footer>
+
+    <script src="main.js"></script>
+
+    <script>
+        const courses = [
+            { title: "Python Mastery", lang: "Python", difficulty: "Beginner", duration: "40", badge: "Most Popular", desc: "Complete Python from basics to advanced projects", img: "https://cdn.autonomous.ai/production/ecm/240425/Dual-Monitor-Setup-Ideas-Boost-Productivity-Efficiency11.webp" },
+            { title: "JavaScript Full Stack", lang: "JavaScript", difficulty: "Intermediate", duration: "50", badge: "Web Essential", desc: "Frontend, Backend, and modern frameworks", img: "https://cdn.autonomous.ai/production/ecm/240425/Dual-Monitor-Setup-Ideas-Boost-Productivity-Efficiency6.webp" },
+            { title: "Java Enterprise Development", lang: "Java", difficulty: "Advanced", duration: "45", badge: "Enterprise Leader", desc: "Build scalable backend systems and Android apps", img: "https://cdn.autonomous.ai/production/ecm/250614/blackdesksetup(1).webp" },
+            { title: "C Systems Programming", lang: "C", difficulty: "Advanced", duration: "35", badge: "Systems Foundation", desc: "Low-level programming and operating systems", img: "https://www.makerstations.io/content/images/2023/11/meteor-desk-setup-0.jpg" },
+            { title: "C++ Modern Development", lang: "C++", difficulty: "Advanced", duration: "40", badge: "Performance King", desc: "Game development and high-performance applications", img: "https://www.makerstations.io/content/images/2023/11/meteor-desk-setup-02.jpg" },
+            { title: "C# and .NET Mastery", lang: "C#", difficulty: "Intermediate", duration: "38", badge: "Microsoft Ecosystem", desc: "Windows apps and Unity game development", img: "https://i.ytimg.com/vi/fLPi7fIZEmw/maxresdefault.jpg" },
+            { title: "Go for Cloud Engineers", lang: "Go", difficulty: "Intermediate", duration: "30", badge: "Cloud Native", desc: "Microservices and DevOps tools", img: "https://cdn.autonomous.ai/production/ecm/240425/Dual-Monitor-Setup-Ideas-Boost-Productivity-Efficiency1.webp" },
+            { title: "Rust Systems Programming", lang: "Rust", difficulty: "Advanced", duration: "35", badge: "Fastest Growing", desc: "Safe concurrent systems and WebAssembly", img: "https://image.benq.com/is/image/benqco/10-5?$ResponsivePreset$" },
+            { title: "TypeScript Enterprise", lang: "TypeScript", difficulty: "Intermediate", duration: "32", badge: "Modern Web", desc: "Large-scale JavaScript applications", img: "https://www.makerstations.io/content/images/2023/11/meteor-desk-setup-01.jpg" },
+            { title: "PHP Web Development", lang: "PHP", difficulty: "Beginner", duration: "28", badge: "Web Backend Classic", desc: "WordPress, Laravel, and dynamic sites", img: "https://thumbor.autonomous.ai/jxevPta-YTrwx8h8ECDx80w2dxA=/450x253/smart/https://cdn.autonomous.ai/static/upload/images/new_post/5-desk-setup-with-laptop-monitor-2852-1632024309945.jpg" }
+        ];
+
+        const grid = document.getElementById('courseGrid');
+        const searchInput = document.getElementById('search');
+
+        function renderCourses(data) {
+            if (data.length === 0) {
+                grid.innerHTML = '<p style="grid-column:1/-1; text-align:center; padding:2rem; color:var(--text-muted); font-size:1.1rem;">No courses found matching your filters.</p>';
+                return;
+            }
+            grid.innerHTML = '';
+            data.forEach(course => {
+                const card = document.createElement('div');
+                card.className = 'course-card';
+                card.innerHTML = `
+                    <img src="${course.img}" alt="${course.title}" class="course-image">
+                    <div class="course-content">
+                        <i class="far fa-heart wishlist" data-title="${course.title}"></i>
+                        <h3>${course.title}</h3>
+                        <div class="course-badge">${course.badge}</div>
+                        <p>${course.desc}</p>
+                        <div>
+                            <a href="#" class="btn">Enroll Free</a>
+                            <a href="#" class="btn btn-preview">Preview</a>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+            loadWishlist();
+        }
+
+        function loadWishlist() {
+            const wishlist = JSON.parse(localStorage.getItem('wishlist') || '[]');
+            document.querySelectorAll('.wishlist').forEach(icon => {
+                if (wishlist.includes(icon.dataset.title)) {
+                    icon.classList.replace('far', 'fas');
+                    icon.classList.add('active');
+                }
+                icon.addEventListener('click', () => {
+                    const title = icon.dataset.title;
+                    if (wishlist.includes(title)) {
+                        wishlist.splice(wishlist.indexOf(title), 1);
+                        icon.classList.replace('fas', 'far');
+                        icon.classList.remove('active');
+                    } else {
+                        wishlist.push(title);
+                        icon.classList.replace('far', 'fas');
+                        icon.classList.add('active');
+                    }
+                    localStorage.setItem('wishlist', JSON.stringify(wishlist));
+                });
+            });
+        }
+
+        let debounceTimer;
+        function filterCourses() {
+            clearTimeout(debounceTimer);
+            debounceTimer = setTimeout(() => {
+                const search = searchInput.value.toLowerCase();
+                const checked = [...document.querySelectorAll('input[type="checkbox"]:checked')].map(cb => cb.value);
+
+                const filtered = courses.filter(course => {
+                    const matchesSearch = course.title.toLowerCase().includes(search) || course.desc.toLowerCase().includes(search) || course.lang.toLowerCase().includes(search);
+                    const matchesFilters = checked.length === 0 || 
+                        checked.includes(course.lang) || 
+                        checked.includes(course.difficulty) || 
+                        (checked.includes('<20') && parseInt(course.duration) < 20) ||
+                        (checked.includes('20-40') && parseInt(course.duration) >= 20 && parseInt(course.duration) <= 40) ||
+                        (checked.includes('>40') && parseInt(course.duration) > 40);
+                    return matchesSearch && matchesFilters;
+                });
+
+                renderCourses(filtered);
+            }, 300);
+        }
+
+        document.querySelectorAll('input[type="checkbox"], #search').forEach(el => {
+            el.addEventListener('change', filterCourses);
+            if (el.id === 'search') el.addEventListener('input', filterCourses);
+        });
+
+        renderCourses(courses);
+    </script>
+</body>
+</html>
