@@ -3,57 +3,446 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Support Us - DataFog Studios™</title>
+    <title>Support Us - DataFog Studios™ | Help Keep Education Free</title>
+    <meta name="description" content="Support DataFog Studios and help us keep programming education free for everyone. Donate via PayPal, Ko-fi, or cryptocurrency.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Lexend:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
         :root {
-            --primary: #4f46e5;
-            --accent: #f59e0b;
-            --light-bg: #f8fafc;
-            --light-card: #ffffff;
-            --dark-text: #1e293b;
-            --text-muted: #64748b;
-            --header-height: 80px;
-        }
-        @media (prefers-color-scheme: dark) {
-            :root {
-                --light-bg: #0f172a;
-                --light-card: #1e293b;
-                --dark-text: #f8fafc;
-                --text-muted: #94a3b8;
-            }
+            --navy-900: #0F172A;
+            --navy-800: #1E293B;
+            --sky: #38BDF8;
+            --indigo: #6366F1;
+            --emerald: #10B981;
+            --amber: #F59E0B;
+            --pink: #ec4899;
+            --white: #FFF;
+            --gray-200: #E2E8F0;
+            --gray-400: #94A3B8;
+            --header-h: 80px;
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Open Sans', sans-serif; background: var(--light-bg); color: var(--dark-text); line-height: 1.6; padding-top: var(--header-height); }
-        .header { background: rgba(255,255,255,0.92); backdrop-filter: blur(20px); position: fixed; width: 100%; top: 0; z-index: 1000; border-bottom: 1px solid var(--border); box-shadow: 0 4px 30px rgba(0,0,0,0.08); height: var(--header-height); }
-        .nav-container { max-width: 1400px; margin: auto; display: flex; justify-content: space-between; align-items: center; padding: 0 2rem; height: 100%; }
-        .logo { font-size: 1.8rem; font-weight: 900; font-family: 'Montserrat', sans-serif; background: linear-gradient(135deg, var(--primary), #8b5cf6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .nav-links a { color: var(--dark-text); text-decoration: none; font-weight: 500; margin-left: 2rem; font-size: 1rem; }
-        .nav-buttons { display: flex; align-items: center; gap: 1rem; }
-        .support-btn, .dashboard-btn { padding: 0.6rem 1.6rem; border-radius: 50px; font-weight: 600; transition: .3s; text-decoration: none; }
-        .support-btn { background: linear-gradient(135deg, var(--accent), #ec4899); color: white; }
-        .dashboard-btn { background: linear-gradient(135deg, var(--primary), #4338ca); color: white; }
-        .hero { min-height: 45vh; background: linear-gradient(rgba(248,250,252,0.95), rgba(248,250,252,0.85)), url('https://static.vecteezy.com/system/resources/previews/025/440/910/non_2x/donation-and-volunteers-work-concept-tiny-people-help-charity-and-sharing-hope-modern-flat-cartoon-style-illustration-vector.jpg') center/cover no-repeat; display: flex; align-items: center; justify-content: center; text-align: center; padding: 0 1.5rem; }
-        .hero h1 { font-family: 'Montserrat', sans-serif; font-size: clamp(2.2rem, 5.5vw, 3.4rem); font-weight: 900; color: var(--dark-text); margin-bottom: 0.5rem; }
-        .container { max-width: 1000px; margin: 0 auto; padding: 2rem; text-align: center; }
-        .support-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
-        .support-card { background: var(--light-card); padding: 2.5rem; border-radius: 24px; box-shadow: 0 15px 50px rgba(0,0,0,0.1); transition: .3s; }
-        .support-card:hover { transform: translateY(-10px); }
-        .icon { font-size: 4rem; margin-bottom: 1.5rem; }
-        .btn { padding: 1rem 2.5rem; border-radius: 50px; font-weight: 600; text-decoration: none; transition: .3s; background: var(--primary); color: white; }
-        .btn:hover { background: #4338ca; transform: translateY(-4px); }
-        .back-btn { margin-top: 4rem; }
-        footer { background: #f1f5f9; padding: 3rem 2rem 2rem; margin-top: 3rem; text-align: center; color: var(--text-muted); font-size: 0.9rem; }
-        @media (max-width: 768px) { .support-grid { grid-template-columns: 1fr; } }
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: var(--navy-900);
+            color: var(--gray-200);
+            line-height: 1.6;
+            padding-top: var(--header-h);
+        }
+        .header {
+            background: rgba(15,23,42,.8);
+            backdrop-filter: blur(20px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(56,189,248,.1);
+            height: var(--header-h);
+        }
+        .nav-container {
+            max-width: 1400px;
+            margin: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+            height: 100%;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--white);
+            text-decoration: none;
+        }
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--sky), var(--indigo));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+        }
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+        .nav-links a {
+            color: var(--gray-400);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color .3s;
+        }
+        .nav-links a:hover { color: var(--sky); }
+        .nav-buttons {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .support-btn, .dashboard-btn {
+            padding: .6rem 1.6rem;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: transform .3s, box-shadow .3s;
+            text-decoration: none;
+        }
+        .support-btn {
+            background: linear-gradient(135deg, var(--amber), var(--pink));
+            color: #fff;
+        }
+        .dashboard-btn {
+            background: linear-gradient(135deg, var(--sky), var(--indigo));
+            color: #fff;
+        }
+        .support-btn:hover, .dashboard-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(56,189,248,.3);
+        }
+        .hero {
+            min-height: 50vh;
+            background: linear-gradient(135deg, rgba(236,72,153,.2), rgba(245,158,11,.2)),
+                        url('https://static.vecteezy.com/system/resources/previews/025/440/910/non_2x/donation-and-volunteers-work-concept-tiny-people-help-charity-and-sharing-hope-modern-flat-cartoon-style-illustration-vector.jpg') center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 1.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(15,23,42,.7);
+        }
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+        }
+        .hero h1 {
+            font-family: 'Lexend', sans-serif;
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 900;
+            color: var(--white);
+            margin-bottom: 1rem;
+        }
+        .hero p {
+            font-size: 1.3rem;
+            color: var(--gray-200);
+            margin-bottom: 2rem;
+        }
+        .hero-heart {
+            font-size: 5rem;
+            color: var(--pink);
+            animation: heartbeat 1.5s ease-in-out infinite;
+            margin-bottom: 1rem;
+        }
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            25% { transform: scale(1.1); }
+            50% { transform: scale(1); }
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+        .intro-section {
+            max-width: 800px;
+            margin: 0 auto 4rem;
+        }
+        .intro-section p {
+            font-size: 1.2rem;
+            color: var(--gray-400);
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+        .impact-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 4rem 0;
+            padding: 3rem 0;
+            border-top: 1px solid rgba(56,189,248,.2);
+            border-bottom: 1px solid rgba(56,189,248,.2);
+        }
+        .stat-item { text-align: center; }
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--sky), var(--indigo));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: .5rem;
+        }
+        .stat-label {
+            color: var(--gray-400);
+        }
+        .section-title {
+            font-size: 2.5rem;
+            color: var(--white);
+            margin-bottom: 3rem;
+        }
+        .support-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin: 4rem 0;
+        }
+        .support-card {
+            background: var(--navy-800);
+            padding: 3rem 2.5rem;
+            border-radius: 24px;
+            border: 2px solid rgba(56,189,248,.2);
+            transition: transform .4s, box-shadow .4s, border-color .4s;
+            position: relative;
+            overflow: hidden;
+        }
+        .support-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--sky), var(--indigo));
+            transform: scaleX(0);
+            transition: transform .4s;
+        }
+        .support-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(56,189,248,.3);
+            border-color: var(--sky);
+        }
+        .support-card:hover::before { transform: scaleX(1); }
+        .card-icon {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            display: inline-block;
+            transition: transform .3s;
+        }
+        .support-card:hover .card-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+        .support-card h3 {
+            font-size: 1.8rem;
+            color: var(--white);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+        .support-card p {
+            color: var(--gray-400);
+            margin-bottom: 2rem;
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+        .support-card .amount {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--sky), var(--indigo));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+        }
+        .btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: transform .3s, box-shadow .3s;
+            font-size: 1.1rem;
+            color: #fff;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, var(--sky), var(--indigo));
+        }
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(56,189,248,.4);
+        }
+        .btn-emerald {
+            background: linear-gradient(135deg, var(--emerald), #059669);
+        }
+        .btn-emerald:hover {
+            box-shadow: 0 15px 40px rgba(16,185,129,.4);
+        }
+        .btn-purple {
+            background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+        }
+        .btn-purple:hover {
+            box-shadow: 0 15px 40px rgba(139,92,246,.4);
+        }
+        .crypto-section {
+            background: var(--navy-800);
+            padding: 3rem;
+            border-radius: 20px;
+            margin: 4rem 0;
+            border: 1px solid rgba(56,189,248,.2);
+        }
+        .crypto-section h3 {
+            color: var(--white);
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        .crypto-section > p {
+            color: var(--gray-400);
+            margin-bottom: 2rem;
+        }
+        .crypto-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        .crypto-item {
+            background: var(--navy-900);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid rgba(56,189,248,.1);
+            transition: border-color .3s;
+        }
+        .crypto-item:hover {
+            border-color: rgba(56,189,248,.3);
+        }
+        .crypto-item h4 {
+            color: var(--sky);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+            font-size: 1.2rem;
+        }
+        .crypto-address {
+            background: rgba(56,189,248,.05);
+            padding: 1rem;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: .85rem;
+            color: var(--gray-400);
+            word-break: break-all;
+            margin-bottom: 1rem;
+        }
+        .copy-btn {
+            background: rgba(56,189,248,.2);
+            color: var(--sky);
+            border: none;
+            padding: .5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background .3s, color .3s;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        .copy-btn:hover {
+            background: var(--sky);
+            color: var(--white);
+        }
+        .copy-btn.copied {
+            background: var(--emerald);
+            color: var(--white);
+        }
+        .why-support {
+            background: linear-gradient(135deg, rgba(56,189,248,.1), rgba(99,102,241,.1));
+            padding: 4rem 3rem;
+            border-radius: 24px;
+            margin: 4rem 0;
+        }
+        .why-support h2 {
+            font-size: 2.5rem;
+            color: var(--white);
+            margin-bottom: 2rem;
+        }
+        .why-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            text-align: left;
+        }
+        .why-item {
+            display: flex;
+            gap: 1rem;
+        }
+        .why-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--sky), var(--indigo));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .why-icon i {
+            font-size: 1.5rem;
+            color: #fff;
+        }
+        .why-content h4 {
+            color: var(--white);
+            margin-bottom: .5rem;
+        }
+        .why-content p {
+            color: var(--gray-400);
+        }
+        .thank-you {
+            margin-top: 4rem;
+            padding: 3rem;
+            background: linear-gradient(135deg, var(--pink), var(--amber));
+            border-radius: 20px;
+            color: #fff;
+        }
+        .thank-you h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        .thank-you p {
+            font-size: 1.2rem;
+            opacity: .95;
+        }
+        .back-btn { margin-top: 3rem; }
+        footer {
+            background: var(--navy-800);
+            padding: 3rem 2rem 2rem;
+            margin-top: 4rem;
+            text-align: center;
+            color: var(--gray-400);
+            font-size: .9rem;
+            border-top: 1px solid rgba(56,189,248,.1);
+        }
+        footer a {
+            color: var(--sky);
+            text-decoration: none;
+            transition: color .3s;
+        }
+        footer a:hover { color: var(--indigo); }
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .support-grid, .why-list { grid-template-columns: 1fr; }
+            .hero h1 { font-size: 2rem; }
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-in { animation: fadeInUp .8s ease-out; }
     </style>
 </head>
 <body>
     <header class="header">
         <div class="nav-container">
-            <div class="logo">DataFog Studios™</div>
+            <a href="../index.html" class="logo">
+                <div class="logo-icon">DF</div>
+                <span>DataFog Studios™</span>
+            </a>
             <nav class="nav-links">
                 <a href="../index.html">Home</a>
                 <a href="../courses.html">Courses</a>
@@ -68,43 +457,221 @@
     </header>
 
     <section class="hero">
-        <h1>Support DataFog Studios™</h1>
+        <div class="hero-content">
+            <i class="fas fa-heart hero-heart"></i>
+            <h1>Support DataFog Studios™</h1>
+            <p>Help us keep programming education free for everyone, everywhere</p>
+        </div>
     </section>
 
     <div class="container">
-        <i class="fas fa-heart" style="font-size:4rem; color:#ec4899;"></i>
-        <p style="font-size:1.2rem; color:var(--text-muted); margin:2rem auto; max-width:800px;">Your contribution helps us keep premium programming education 100% free for everyone worldwide. Every donation makes a difference.</p>
+        <div class="intro-section animate-in">
+            <p>
+                Your contribution helps us maintain and expand our free programming courses, reaching thousands of learners worldwide. Every donation, no matter the size, makes a real difference.
+            </p>
+            <p>
+                <strong>100% of donations go directly to creating and improving free educational content.</strong>
+            </p>
+        </div>
 
-        <div class="support-grid">
-            <div class="support-card">
-                <i class="fas fa-gift icon" style="color:#10b981;"></i>
-                <h3>One-Time Donation</h3>
-                <p>Make a single contribution of any amount to support our mission.</p>
-                <a href="#" class="btn">Donate Now</a>
+        <div class="impact-stats animate-in">
+            <div class="stat-item">
+                <div class="stat-number">50,000+</div>
+                <div class="stat-label">Students Helped</div>
             </div>
-            <div class="support-card">
-                <i class="fas fa-sync-alt icon" style="color:#8b5cf6;"></i>
-                <h3>Monthly Support</h3>
-                <p>Become a recurring supporter and help sustain long-term growth.</p>
-                <a href="#" class="btn">Subscribe</a>
+            <div class="stat-item">
+                <div class="stat-number">$12,450</div>
+                <div class="stat-label">Donated in 2024</div>
             </div>
-            <div class="support-card">
-                <i class="fab fa-bitcoin icon" style="color:#f59e0b;"></i>
-                <h3>Crypto Donation</h3>
-                <p>Support us with Bitcoin, Ethereum, or other cryptocurrencies.</p>
-                <a href="#" class="btn">Donate Crypto</a>
+            <div class="stat-item">
+                <div class="stat-number">450+</div>
+                <div class="stat-label">Hours of Free Content</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">10</div>
+                <div class="stat-label">Languages Taught</div>
             </div>
         </div>
 
-        <p>Thank you for believing in free education. Together, we're building the future of learning.</p>
-        <a href="../index.html" class="btn back-btn">Back to Home</a>
+        <h2 class="section-title">Choose How to Support</h2>
+        
+        <div class="support-grid">
+            <div class="support-card">
+                <i class="fas fa-coffee card-icon" style="color: var(--emerald);"></i>
+                <h3>Buy Me a Coffee</h3>
+                <div class="amount">$3 - $20</div>
+                <p>Quick one-time donation through Ko-fi. Perfect for showing your appreciation!</p>
+                <a href="https://ko-fi.com/datafogstudios" target="_blank" class="btn btn-emerald">
+                    <i class="fas fa-mug-hot"></i> Donate via Ko-fi
+                </a>
+            </div>
+
+            <div class="support-card">
+                <i class="fas fa-hand-holding-heart card-icon" style="color: #8b5cf6;"></i>
+                <h3>Monthly Support</h3>
+                <div class="amount">$5 - $50/mo</div>
+                <p>Become a recurring supporter and help sustain our mission long-term.</p>
+                <a href="https://patreon.com/datafogstudios" target="_blank" class="btn btn-purple">
+                    <i class="fab fa-patreon"></i> Join Patreon
+                </a>
+            </div>
+
+            <div class="support-card">
+                <i class="fas fa-credit-card card-icon" style="color: var(--sky);"></i>
+                <h3>PayPal Donation</h3>
+                <div class="amount">Any Amount</div>
+                <p>Direct PayPal donation with secure payment processing.</p>
+                <a href="https://paypal.me/datafogstudios" target="_blank" class="btn btn-primary">
+                    <i class="fab fa-paypal"></i> Donate via PayPal
+                </a>
+            </div>
+        </div>
+
+        <div class="crypto-section">
+            <h3><i class="fab fa-bitcoin"></i> Cryptocurrency Donations</h3>
+            <p>Support us with Bitcoin, Ethereum, or USDT. Lower fees, faster transactions.</p>
+            
+            <div class="crypto-grid">
+                <div class="crypto-item">
+                    <h4><i class="fab fa-bitcoin"></i> Bitcoin (BTC)</h4>
+                    <div class="crypto-address" id="btc-address">1FaAY9ySDdebQRXQVC45QuGrMZWW5XRURk</div>
+                    <button class="copy-btn" onclick="copyAddress('btc-address', this)">
+                        <i class="fas fa-copy"></i> Copy Address
+                    </button>
+                </div>
+
+                <div class="crypto-item">
+                    <h4><i class="fab fa-ethereum"></i> Ethereum (ERC20)</h4>
+                    <div class="crypto-address" id="eth-address">0xc3c2bebf711aba6ea587564b30b6a01531bb4a77</div>
+                    <button class="copy-btn" onclick="copyAddress('eth-address', this)">
+                        <i class="fas fa-copy"></i> Copy Address
+                    </button>
+                </div>
+
+                <div class="crypto-item">
+                    <h4><i class="fas fa-coins"></i> USDT (TRC20)</h4>
+                    <div class="crypto-address" id="usdt-address">TVNp9g5sp2YuQttEyBw1ohbUyECKUm7dJk</div>
+                    <button class="copy-btn" onclick="copyAddress('usdt-address', this)">
+                        <i class="fas fa-copy"></i> Copy Address
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="why-support">
+            <h2>Why Your Support Matters</h2>
+            <div class="why-list">
+                <div class="why-item">
+                    <div class="why-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <div class="why-content">
+                        <h4>Keep Education Free</h4>
+                        <p>Your donations ensure all courses remain 100% free for everyone worldwide.</p>
+                    </div>
+                </div>
+
+                <div class="why-item">
+                    <div class="why-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <div class="why-content">
+                        <h4>Create New Content</h4>
+                        <p>Fund development of new courses, lessons, and learning materials.</p>
+                    </div>
+                </div>
+
+                <div class="why-item">
+                    <div class="why-icon">
+                        <i class="fas fa-server"></i>
+                    </div>
+                    <div class="why-content">
+                        <h4>Maintain Platform</h4>
+                        <p>Cover hosting, bandwidth, and infrastructure costs for smooth learning.</p>
+                    </div>
+                </div>
+
+                <div class="why-item">
+                    <div class="why-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="why-content">
+                        <h4>Support Community</h4>
+                        <p>Enable community features, forums, and peer-to-peer learning.</p>
+                    </div>
+                </div>
+
+                <div class="why-item">
+                    <div class="why-icon">
+                        <i class="fas fa-award"></i>
+                    </div>
+                    <div class="why-content">
+                        <h4>Scholarship Fund</h4>
+                        <p>Provide free certificates to students who can't afford them.</p>
+                    </div>
+                </div>
+
+                <div class="why-item">
+                    <div class="why-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="why-content">
+                        <h4>Platform Growth</h4>
+                        <p>Invest in better features, tools, and learning experiences.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="thank-you">
+            <h2>Thank You! 🙏</h2>
+            <p>Your generosity helps us empower thousands of aspiring developers worldwide. Together, we're making quality programming education accessible to everyone.</p>
+        </div>
+
+        <a href="../index.html" class="btn btn-primary back-btn">
+            <i class="fas fa-home"></i> Back to Home
+        </a>
     </div>
 
     <footer>
-        <p>© <script>document.write(new Date().getFullYear())</script> DataFog Studios™. Created with love by Hassan Mohamed. All rights reserved.</p>
-        <a href="../index.html">Back to Home</a>
+        <p>© <script>document.write(new Date().getFullYear())</script> DataFog Studios™. Created with ❤️ by Hassan Mohamed. All rights reserved.</p>
+        <p style="margin-top: .5rem;">
+            <a href="privacy.html">Privacy</a> | 
+            <a href="terms.html">Terms</a> | 
+            <a href="contact.html">Contact</a>
+        </p>
     </footer>
 
-    <script src="../main.js"></script>
+    <script>
+        function copyAddress(elementId, button) {
+            const address = document.getElementById(elementId).textContent;
+            
+            navigator.clipboard.writeText(address).then(() => {
+                const originalText = button.innerHTML;
+                button.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                button.classList.add('copied');
+                
+                setTimeout(() => {
+                    button.innerHTML = originalText;
+                    button.classList.remove('copied');
+                }, 2000);
+            }).catch(err => {
+                console.error('Failed to copy:', err);
+                alert('Failed to copy address. Please copy manually.');
+            });
+        }
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-in');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.support-card, .intro-section, .impact-stats').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
 </body>
 </html>

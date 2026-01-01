@@ -16,11 +16,11 @@
             --accent: #f59e0b;
             --success: #10b981;
             --light-bg: #f8fafc;
-            --light-card: #ffffff;
+            --light-card: #fff;
             --dark-text: #1e293b;
             --text-muted: #64748b;
-            --border: rgba(0, 0, 0, 0.06);
-            --header-height: 80px;
+            --border: rgba(0,0,0,.06);
+            --header-h: 80px;
         }
         @media (prefers-color-scheme: dark) {
             :root {
@@ -28,49 +28,217 @@
                 --light-card: #1e293b;
                 --dark-text: #f8fafc;
                 --text-muted: #94a3b8;
-                --border: rgba(255, 255, 255, 0.1);
+                --border: rgba(255,255,255,.1);
             }
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
-        body { font-family: 'Open Sans', sans-serif; background: var(--light-bg); color: var(--dark-text); line-height: 1.6; padding-top: var(--header-height); }
-        .header { background: rgba(255,255,255,0.92); backdrop-filter: blur(20px); position: fixed; width: 100%; top: 0; z-index: 1000; border-bottom: 1px solid var(--border); box-shadow: 0 4px 30px rgba(0,0,0,0.08); height: var(--header-height); }
-        .nav-container { max-width: 1400px; margin: auto; display: flex; justify-content: space-between; align-items: center; padding: 0 2rem; height: 100%; }
-        .logo { font-size: 1.8rem; font-weight: 900; font-family: 'Montserrat', sans-serif; background: linear-gradient(135deg, var(--primary), #8b5cf6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .nav-links a { color: var(--dark-text); text-decoration: none; font-weight: 500; margin-left: 2rem; font-size: 1rem; }
+        body { 
+            font-family: 'Open Sans', sans-serif; 
+            background: var(--light-bg); 
+            color: var(--dark-text); 
+            line-height: 1.6; 
+            padding-top: var(--header-h); 
+        }
+        .header { 
+            background: rgba(255,255,255,.92); 
+            backdrop-filter: blur(20px); 
+            position: fixed; 
+            width: 100%; 
+            top: 0; 
+            z-index: 1000; 
+            border-bottom: 1px solid var(--border); 
+            box-shadow: 0 4px 30px rgba(0,0,0,.08); 
+            height: var(--header-h); 
+        }
+        .nav-container { 
+            max-width: 1400px; 
+            margin: auto; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            padding: 0 2rem; 
+            height: 100%; 
+        }
+        .logo { 
+            font-size: 1.8rem; 
+            font-weight: 900; 
+            font-family: 'Montserrat', sans-serif; 
+            background: linear-gradient(135deg, var(--primary), #8b5cf6); 
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent; 
+        }
+        .nav-links a { 
+            color: var(--dark-text); 
+            text-decoration: none; 
+            font-weight: 500; 
+            margin-left: 2rem; 
+        }
         .nav-buttons { display: flex; align-items: center; gap: 1rem; }
-        .support-btn, .dashboard-btn { padding: 0.6rem 1.6rem; border-radius: 50px; font-weight: 600; transition: .3s; text-decoration: none; }
-        .support-btn { background: linear-gradient(135deg, var(--accent), #ec4899); color: white; }
-        .dashboard-btn { background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: white; }
-        .hero { min-height: 55vh; background: linear-gradient(rgba(248,250,252,0.95), rgba(248,250,252,0.85)), url('https://cdn.autonomous.ai/production/ecm/240425/Dual-Monitor-Setup-Ideas-Boost-Productivity-Efficiency11.webp') center/cover no-repeat; display: flex; align-items: center; justify-content: center; text-align: center; padding: 0 1.5rem; }
+        .support-btn, .dashboard-btn { 
+            padding: .6rem 1.6rem; 
+            border-radius: 50px; 
+            font-weight: 600; 
+            transition: transform .3s, box-shadow .3s; 
+            text-decoration: none; 
+        }
+        .support-btn { 
+            background: linear-gradient(135deg, var(--accent), #ec4899); 
+            color: #fff; 
+        }
+        .dashboard-btn { 
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark)); 
+            color: #fff; 
+        }
+        .hero { 
+            min-height: 55vh; 
+            background: linear-gradient(rgba(248,250,252,.95), rgba(248,250,252,.85)), 
+                        url('https://cdn.autonomous.ai/production/ecm/240425/Dual-Monitor-Setup-Ideas-Boost-Productivity-Efficiency11.webp') center/cover; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            text-align: center; 
+            padding: 0 1.5rem; 
+        }
         .hero-content { max-width: 900px; }
-        .hero-badge { background: rgba(16,185,129,0.1); color: var(--success); padding: 0.5rem 1.5rem; border-radius: 50px; font-weight: 600; font-size: 0.9rem; margin-bottom: 1rem; border: 1px solid var(--success); }
-        .hero h1 { font-family: 'Montserrat', sans-serif; font-size: clamp(2.5rem, 6vw, 4rem); font-weight: 900; color: var(--dark-text); margin-bottom: 1rem; }
-        .hero p { font-size: 1.2rem; max-width: 700px; margin: 0 auto 2rem; color: var(--text-muted); }
-        .btn { background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: white; padding: 1rem 2.5rem; border-radius: 50px; font-weight: 600; text-decoration: none; display: inline-block; transition: .3s; box-shadow: 0 8px 25px rgba(79,70,229,0.3); }
-        .btn:hover { transform: translateY(-4px); box-shadow: 0 12px 35px rgba(79,70,229,0.4); }
+        .hero-badge { 
+            background: rgba(16,185,129,.1); 
+            color: var(--success); 
+            padding: .5rem 1.5rem; 
+            border-radius: 50px; 
+            font-weight: 600; 
+            font-size: .9rem; 
+            margin-bottom: 1rem; 
+            border: 1px solid var(--success); 
+            display: inline-block;
+        }
+        .hero h1 { 
+            font-family: 'Montserrat', sans-serif; 
+            font-size: clamp(2.5rem, 6vw, 4rem); 
+            font-weight: 900; 
+            margin-bottom: 1rem; 
+        }
+        .hero p { 
+            font-size: 1.2rem; 
+            max-width: 700px; 
+            margin: 0 auto 2rem; 
+            color: var(--text-muted); 
+        }
+        .btn { 
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark)); 
+            color: #fff; 
+            padding: 1rem 2.5rem; 
+            border-radius: 50px; 
+            font-weight: 600; 
+            text-decoration: none; 
+            display: inline-block; 
+            transition: transform .3s, box-shadow .3s; 
+            box-shadow: 0 8px 25px rgba(79,70,229,.3); 
+        }
+        .btn:hover { 
+            transform: translateY(-4px); 
+            box-shadow: 0 12px 35px rgba(79,70,229,.4); 
+        }
         .container { max-width: 1400px; margin: 0 auto; padding: 2rem; }
-        .course-overview { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 3rem; }
-        .overview-card { background: var(--light-card); padding: 2rem; border-radius: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.08); text-align: center; }
-        .overview-card i { font-size: 3rem; color: var(--primary); margin-bottom: 1rem; }
-        .overview-card h3 { font-family: 'Montserrat', sans-serif; font-size: 1.8rem; margin-bottom: 0.8rem; }
-        .lesson-list { background: var(--light-card); padding: 2rem; border-radius: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.08); }
-        .lesson-list h2 { font-family: 'Montserrat', sans-serif; font-size: 2.2rem; text-align: center; margin-bottom: 2rem; }
+        .course-overview { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+            gap: 2rem; 
+            margin-bottom: 3rem; 
+        }
+        .overview-card { 
+            background: var(--light-card); 
+            padding: 2rem; 
+            border-radius: 20px; 
+            box-shadow: 0 10px 40px rgba(0,0,0,.08); 
+            text-align: center; 
+        }
+        .overview-card i { 
+            font-size: 3rem; 
+            color: var(--primary); 
+            margin-bottom: 1rem; 
+        }
+        .overview-card h3 { 
+            font-family: 'Montserrat', sans-serif; 
+            font-size: 1.8rem; 
+            margin-bottom: .8rem; 
+        }
+        .lesson-list { 
+            background: var(--light-card); 
+            padding: 2rem; 
+            border-radius: 20px; 
+            box-shadow: 0 10px 40px rgba(0,0,0,.08); 
+        }
+        .lesson-list h2 { 
+            font-family: 'Montserrat', sans-serif; 
+            font-size: 2.2rem; 
+            text-align: center; 
+            margin-bottom: 2rem; 
+        }
         .module { margin-bottom: 2.5rem; }
-        .module h3 { font-family: 'Montserrat', sans-serif; font-size: 1.5rem; color: var(--primary); margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid var(--primary); }
+        .module h3 { 
+            font-family: 'Montserrat', sans-serif; 
+            font-size: 1.5rem; 
+            color: var(--primary); 
+            margin-bottom: 1rem; 
+            padding-bottom: .5rem; 
+            border-bottom: 2px solid var(--primary); 
+        }
         .module-list { list-style: none; }
-        .module-item { padding: 1rem; border-radius: 12px; margin-bottom: 0.8rem; background: rgba(79,70,229,0.05); transition: .3s; display: flex; align-items: center; justify-content: space-between; }
-        .module-item:hover { background: rgba(79,70,229,0.1); transform: translateX(8px); }
-        .module-item a { color: var(--dark-text); text-decoration: none; font-weight: 500; flex: 1; }
-        .module-item.completed { opacity: 0.7; }
-        .module-item.completed::before { content: "✓"; color: var(--success); font-weight: bold; margin-right: 1rem; }
-        .progress-bar { height: 12px; background: #e2e8f0; border-radius: 12px; overflow: hidden; margin: 2rem 0; }
-        .progress-fill { height: 100%; background: linear-gradient(135deg, var(--primary), var(--success)); width: var(--progress, 0%); transition: width 1s ease; }
-        footer { background: #f1f5f9; padding: 3rem 2rem 2rem; margin-top: 3rem; text-align: center; color: var(--text-muted); font-size: 0.9rem; }
-        @media (max-width: 992px) {
-            .course-overview { grid-template-columns: 1fr; }
+        .module-item { 
+            padding: 1rem; 
+            border-radius: 12px; 
+            margin-bottom: .8rem; 
+            background: rgba(79,70,229,.05); 
+            transition: background .3s, transform .3s; 
+            display: flex; 
+            align-items: center; 
+        }
+        .module-item:hover { 
+            background: rgba(79,70,229,.1); 
+            transform: translateX(8px); 
+        }
+        .module-item a { 
+            color: var(--dark-text); 
+            text-decoration: none; 
+            font-weight: 500; 
+            flex: 1; 
+        }
+        .module-item.completed { opacity: .7; }
+        .module-item.completed::before { 
+            content: "✓"; 
+            color: var(--success); 
+            font-weight: 700; 
+            margin-right: 1rem; 
+        }
+        .progress-bar { 
+            height: 12px; 
+            background: #e2e8f0; 
+            border-radius: 12px; 
+            overflow: hidden; 
+            margin: 2rem 0; 
+        }
+        .progress-fill { 
+            height: 100%; 
+            background: linear-gradient(135deg, var(--primary), var(--success)); 
+            transition: width 1s ease; 
+        }
+        footer { 
+            background: #f1f5f9; 
+            padding: 3rem 2rem 2rem; 
+            margin-top: 3rem; 
+            text-align: center; 
+            color: var(--text-muted); 
+            font-size: .9rem; 
+        }
+        footer a {
+            color: var(--primary);
+            text-decoration: none;
+            margin-top: .5rem;
+            display: inline-block;
         }
         @media (max-width: 768px) {
+            .nav-links { display: none; }
             .hero { min-height: 50vh; }
             .container { padding: 1rem; }
         }
@@ -126,10 +294,10 @@
             </div>
         </div>
 
-        <div class="progress-bar" style="--progress: 12%">
-            <div class="progress-fill"></div>
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
         </div>
-        <p style="text-align:center; font-size:1.1rem; color:var(--text-muted);">Your Progress: 12% Complete</p>
+        <p id="progressText" style="text-align:center; font-size:1.1rem; color:var(--text-muted);">Your Progress: 0% Complete</p>
 
         <div class="lesson-list" id="lessons">
             <h2>Course Curriculum</h2>
@@ -137,64 +305,64 @@
             <div class="module">
                 <h3>Module 1: Introduction</h3>
                 <ul class="module-list">
-                    <li class="module-item completed"><a href="python/01-introduction/lesson1-welcome.html">1. Welcome to Python Mastery</a></li>
-                    <li class="module-item"><a href="python/02-basics/lesson2-variables.html">2. Variables & Data Types</a></li>
-                    <li class="module-item"><a href="python/02-basics/lesson3-operators.html">3. Operators & Expressions</a></li>
+                    <li class="module-item" data-lesson="lesson1"><a href="python/01-introduction/lesson1-welcome.html">1. Welcome to Python Mastery</a></li>
+                    <li class="module-item" data-lesson="lesson2"><a href="python/02-basics/lesson2-variables.html">2. Variables & Data Types</a></li>
+                    <li class="module-item" data-lesson="lesson3"><a href="python/02-basics/lesson3-operators.html">3. Operators & Expressions</a></li>
                 </ul>
             </div>
 
             <div class="module">
                 <h3>Module 2: Control Flow</h3>
                 <ul class="module-list">
-                    <li class="module-item"><a href="python/03-control-flow/lesson4-conditionals.html">4. Conditional Statements</a></li>
-                    <li class="module-item"><a href="python/03-control-flow/lesson5-loops.html">5. Loops (for & while)</a></li>
+                    <li class="module-item" data-lesson="lesson4"><a href="python/03-control-flow/lesson4-conditionals.html">4. Conditional Statements</a></li>
+                    <li class="module-item" data-lesson="lesson5"><a href="python/03-control-flow/lesson5-loops.html">5. Loops (for & while)</a></li>
                 </ul>
             </div>
 
             <div class="module">
                 <h3>Module 3: Functions & Modules</h3>
                 <ul class="module-list">
-                    <li class="module-item"><a href="python/04-functions/lesson6-functions.html">6. Defining Functions</a></li>
-                    <li class="module-item"><a href="python/04-functions/lesson7-advanced-functions.html">7. Lambda, Scope & Recursion</a></li>
-                    <li class="module-item"><a href="python/07-modules-packages/lesson14-modules.html">8. Importing Modules</a></li>
+                    <li class="module-item" data-lesson="lesson6"><a href="python/04-functions/lesson6-functions.html">6. Defining Functions</a></li>
+                    <li class="module-item" data-lesson="lesson7"><a href="python/04-functions/lesson7-advanced-functions.html">7. Lambda, Scope & Recursion</a></li>
+                    <li class="module-item" data-lesson="lesson8"><a href="python/07-modules-packages/lesson14-modules.html">8. Importing Modules</a></li>
                 </ul>
             </div>
 
             <div class="module">
                 <h3>Module 4: Data Structures</h3>
                 <ul class="module-list">
-                    <li class="module-item"><a href="python/05-data-structures/lesson8-lists-tuples.html">9. Lists & Tuples</a></li>
-                    <li class="module-item"><a href="python/05-data-structures/lesson9-dictionaries-sets.html">10. Dictionaries & Sets</a></li>
-                    <li class="module-item"><a href="python/05-data-structures/lesson10-comprehensions.html">11. List Comprehensions</a></li>
+                    <li class="module-item" data-lesson="lesson9"><a href="python/05-data-structures/lesson8-lists-tuples.html">9. Lists & Tuples</a></li>
+                    <li class="module-item" data-lesson="lesson10"><a href="python/05-data-structures/lesson9-dictionaries-sets.html">10. Dictionaries & Sets</a></li>
+                    <li class="module-item" data-lesson="lesson11"><a href="python/05-data-structures/lesson10-comprehensions.html">11. List Comprehensions</a></li>
                 </ul>
             </div>
 
             <div class="module">
                 <h3>Module 5: Object-Oriented Programming</h3>
                 <ul class="module-list">
-                    <li class="module-item"><a href="python/06-oop/lesson11-classes-objects.html">12. Classes & Objects</a></li>
-                    <li class="module-item"><a href="python/06-oop/lesson12-inheritance.html">13. Inheritance & Polymorphism</a></li>
-                    <li class="module-item"><a href="python/06-oop/lesson13-special-methods.html">14. Dunder Methods</a></li>
+                    <li class="module-item" data-lesson="lesson12"><a href="python/06-oop/lesson11-classes-objects.html">12. Classes & Objects</a></li>
+                    <li class="module-item" data-lesson="lesson13"><a href="python/06-oop/lesson12-inheritance.html">13. Inheritance & Polymorphism</a></li>
+                    <li class="module-item" data-lesson="lesson14"><a href="python/06-oop/lesson13-special-methods.html">14. Dunder Methods</a></li>
                 </ul>
             </div>
 
             <div class="module">
                 <h3>Module 6: Advanced Topics & Projects</h3>
                 <ul class="module-list">
-                    <li class="module-item"><a href="python/10-advanced-topics/lesson19-generators.html">15. Generators & Iterators</a></li>
-                    <li class="module-item"><a href="python/10-advanced-topics/lesson20-decorators.html">16. Decorators</a></li>
-                    <li class="module-item"><a href="python/11-projects/project1-cli-tool.html">Project 1: Command Line Tool</a></li>
-                    <li class="module-item"><a href="python/11-projects/project2-web-scraper.html">Project 2: Web Scraper</a></li>
-                    <li class="module-item"><a href="python/11-projects/project3-api-app.html">Project 3: REST API with Flask</a></li>
+                    <li class="module-item" data-lesson="lesson15"><a href="python/10-advanced-topics/lesson19-generators.html">15. Generators & Iterators</a></li>
+                    <li class="module-item" data-lesson="lesson16"><a href="python/10-advanced-topics/lesson20-decorators.html">16. Decorators</a></li>
+                    <li class="module-item" data-lesson="project1"><a href="python/11-projects/project1-cli-tool.html">Project 1: Command Line Tool</a></li>
+                    <li class="module-item" data-lesson="project2"><a href="python/11-projects/project2-web-scraper.html">Project 2: Web Scraper</a></li>
+                    <li class="module-item" data-lesson="project3"><a href="python/11-projects/project3-api-app.html">Project 3: REST API with Flask</a></li>
                 </ul>
             </div>
 
             <div class="module">
                 <h3>Module 7: Job Preparation</h3>
                 <ul class="module-list">
-                    <li class="module-item"><a href="python/12-job-prep/lesson23-resume.html">17. Building Your Portfolio</a></li>
-                    <li class="module-item"><a href="python/12-job-prep/lesson24-interviews.html">18. Common Interview Questions</a></li>
-                    <li class="module-item"><a href="python/12-job-prep/lesson25-best-practices.html">19. Python Best Practices</a></li>
+                    <li class="module-item" data-lesson="lesson17"><a href="python/12-job-prep/lesson23-resume.html">17. Building Your Portfolio</a></li>
+                    <li class="module-item" data-lesson="lesson18"><a href="python/12-job-prep/lesson24-interviews.html">18. Common Interview Questions</a></li>
+                    <li class="module-item" data-lesson="lesson19"><a href="python/12-job-prep/lesson25-best-practices.html">19. Python Best Practices</a></li>
                 </ul>
             </div>
         </div>
@@ -206,21 +374,24 @@
     </footer>
 
     <script src="../main.js"></script>
-
     <script>
-        // Simple progress calculation (expand later with real localStorage tracking)
-        const totalLessons = 19; // Update when adding more
+        const totalLessons = 19;
         const completedKey = 'python-completed-lessons';
         const completed = JSON.parse(localStorage.getItem(completedKey) || '[]');
         const progress = Math.round((completed.length / totalLessons) * 100);
 
-        document.querySelector('.progress-fill').style.setProperty('--progress', progress + '%');
-        document.querySelector('.progress-bar + p').textContent = `Your Progress: ${progress}% Complete`;
+        const progressFill = document.getElementById('progressFill');
+        const progressText = document.getElementById('progressText');
+        
+        progressFill.style.width = progress + '%';
+        progressText.textContent = `Your Progress: ${progress}% Complete`;
 
-        // Mark lessons as completed in sidebar (example for lesson 1)
-        if (completed.includes('lesson1')) {
-            document.querySelectorAll('.module-item')[0].classList.add('completed');
-        }
+        document.querySelectorAll('.module-item').forEach(item => {
+            const lesson = item.dataset.lesson;
+            if (completed.includes(lesson)) {
+                item.classList.add('completed');
+            }
+        });
     </script>
 </body>
 </html>
