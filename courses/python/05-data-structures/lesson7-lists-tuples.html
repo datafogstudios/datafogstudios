@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 7: Lists & Tuples - Python Mastery | DataFog Studios™</title>
+    <meta name="description" content="Master Python lists and tuples — mutable and immutable sequences. Learn indexing, slicing, methods, and common operations with interactive examples.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <!-- Monaco Editor CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/monaco-editor@0.44.0/min/vs/loader.js"></script>
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --primary-dark: #4338ca;
+            --accent: #f59e0b;
+            --success: #10b981;
+            --light-bg: #f8fafc;
+            --light-card: #ffffff;
+            --dark-text: #1e293b;
+            --text-muted: #64748b;
+            --border: rgba(0, 0, 0, 0.06);
+            --header-height: 80px;
+        }
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --light-bg: #0f172a;
+                --light-card: #1e293b;
+                --dark-text: #f8fafc;
+                --text-muted: #94a3b8;
+                --border: rgba(255, 255, 255, 0.1);
+            }
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Open Sans', sans-serif; background: var(--light-bg); color: var(--dark-text); line-height: 1.6; padding-top: var(--header-height); }
+        .header { background: rgba(255,255,255,0.92); backdrop-filter: blur(20px); position: fixed; width: 100%; top: 0; z-index: 1000; border-bottom: 1px solid var(--border); box-shadow: 0 4px 30px rgba(0,0,0,0.08); height: var(--header-height); }
+        .nav-container { max-width: 1400px; margin: auto; display: flex; justify-content: space-between; align-items: center; padding: 0 2rem; height: 100%; }
+        .logo { font-size: 1.8rem; font-weight: 900; font-family: 'Montserrat', sans-serif; background: linear-gradient(135deg, var(--primary), #8b5cf6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .nav-links a { color: var(--dark-text); text-decoration: none; font-weight: 500; margin-left: 2rem; font-size: 1rem; }
+        .nav-buttons { display: flex; align-items: center; gap: 1rem; }
+        .support-btn, .dashboard-btn { padding: 0.6rem 1.6rem; border-radius: 50px; font-weight: 600; transition: .3s; text-decoration: none; }
+        .support-btn { background: linear-gradient(135deg, var(--accent), #ec4899); color: white; }
+        .dashboard-btn { background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: white; }
+        .hero { min-height: 35vh; background: linear-gradient(rgba(248,250,252,0.95), rgba(248,250,252,0.85)), url('https://cdn.autonomous.ai/production/ecm/240425/Dual-Monitor-Setup-Ideas-Boost-Productivity-Efficiency11.webp') center/cover no-repeat; display: flex; align-items: center; justify-content: center; text-align: center; padding: 0 1.5rem; }
+        .hero h1 { font-family: 'Montserrat', sans-serif; font-size: clamp(2rem, 5vw, 3rem); font-weight: 900; color: var(--dark-text); margin-bottom: 0.5rem; }
+        .container { max-width: 1400px; margin: 0 auto; padding: 1.5rem 2rem 3rem; display: grid; grid-template-columns: 280px 1fr; gap: 2rem; }
+        .sidebar { background: var(--light-card); padding: 1.5rem; border-radius: 18px; box-shadow: 0 8px 30px rgba(0,0,0,0.08); position: sticky; top: calc(var(--header-height) + 10px); height: fit-content; max-height: calc(100vh - var(--header-height) - 20px); overflow-y: auto; }
+        .sidebar h3 { font-family: 'Montserrat', sans-serif; font-size: 1.3rem; margin-bottom: 1rem; }
+        .lesson-list { list-style: none; }
+        .lesson-item { padding: 0.8rem 1rem; border-radius: 12px; margin-bottom: 0.5rem; cursor: pointer; transition: .3s; display: flex; align-items: center; }
+        .lesson-item:hover { background: rgba(79,70,229,0.1); }
+        .lesson-item.active { background: var(--primary); color: white; font-weight: 600; }
+        .lesson-item.completed::before { content: "✓"; margin-right: 0.8rem; color: var(--success); font-weight: bold; }
+        .lesson-item i { margin-right: 0.8rem; color: var(--accent); }
+        .main-content { background: var(--light-card); border-radius: 18px; box-shadow: 0 8px 30px rgba(0,0,0,0.08); overflow: hidden; }
+        .lesson-header { padding: 2rem; text-align: center; border-bottom: 1px solid var(--border); background: linear-gradient(135deg, rgba(79,70,229,0.05), rgba(245,158,11,0.05)); }
+        .lesson-header h2 { font-family: 'Montserrat', sans-serif; font-size: 2.2rem; margin-bottom: 0.8rem; }
+        .lesson-header p { font-size: 1.1rem; color: var(--text-muted); }
+        .lesson-body { padding: 2.5rem; }
+        .lesson-body h3 { font-family: 'Montserrat', sans-serif; font-size: 1.6rem; margin: 2rem 0 1rem; color: var(--primary); }
+        .lesson-body p { margin-bottom: 1.2rem; }
+        .code-block { background: #1e1e1e; color: #f8f8f2; padding: 1.2rem; border-radius: 12px; font-family: monospace; overflow-x: auto; margin: 1.5rem 0; }
+        .editor-container { height: 420px; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; margin: 2rem 0; }
+        #output { background: #1e1e1e; color: #f8f8f2; padding: 1.2rem; border-radius: 12px; min-height: 120px; margin-top: 1rem; font-family: monospace; white-space: pre-wrap; border: 1px solid var(--border); }
+        .btn { background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: white; padding: 0.9rem 2rem; border-radius: 50px; font-weight: 600; text-decoration: none; display: inline-block; transition: .3s; margin: 1rem 0.8rem 1rem 0; }
+        .btn:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(79,70,229,0.3); }
+        .btn-success { background: var(--success); }
+        .navigation { text-align: center; margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border); }
+        img.diagram { max-width: 100%; height: auto; border-radius: 12px; box-shadow: 0 8px 25px rgba(0,0,0,0.1); margin: 2rem 0; display: block; margin-left: auto; margin-right: auto; }
+        footer { background: #f1f5f9; padding: 3rem 2rem 2rem; margin-top: 3rem; text-align: center; color: var(--text-muted); font-size: 0.9rem; }
+        @media (max-width: 992px) {
+            .container { grid-template-columns: 1fr; }
+            .sidebar { position: static; }
+        }
+        @media (max-width: 768px) {
+            .lesson-body { padding: 1.5rem; }
+            .editor-container { height: 350px; }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="nav-container">
+            <div class="logo">DataFog Studios™</div>
+            <nav class="nav-links">
+                <a href="../../../index.html">Home</a>
+                <a href="../../../courses.html">Courses</a>
+                <a href="../../../index.html#features">Features</a>
+                <a href="../../../pages/contact.html">Contact</a>
+            </nav>
+            <div class="nav-buttons">
+                <a href="../../../dashboard.html" class="dashboard-btn">My Dashboard</a>
+                <a href="../../../pages/support.html" class="support-btn">Support Us</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div>
+            <h1>Lesson 7: Lists & Tuples</h1>
+            <p>Python Mastery • Module 5: Data Structures</p>
+        </div>
+    </section>
+
+    <div class="container">
+        <aside class="sidebar">
+            <h3>Course Progress</h3>
+            <ul class="lesson-list">
+                <li class="lesson-item completed"><i class="fas fa-check-circle"></i> 1. Welcome to Python</li>
+                <li class="lesson-item completed"><i class="fas fa-check-circle"></i> 2. Variables & Data Types</li>
+                <li class="lesson-item completed"><i class="fas fa-check-circle"></i> 3. Conditionals</li>
+                <li class="lesson-item completed"><i class="fas fa-check-circle"></i> 4. Loops</li>
+                <li class="lesson-item completed"><i class="fas fa-check-circle"></i> 5. Basic Functions</li>
+                <li class="lesson-item completed"><i class="fas fa-check-circle"></i> 6. Advanced Functions</li>
+                <li class="lesson-item active"><i class="fas fa-play-circle"></i> 7. Lists & Tuples</li>
+                <li class="lesson-item"><i class="fas fa-play-circle"></i> 8. Dictionaries & Sets</li>
+                <li class="lesson-item"><i class="fas fa-play-circle"></i> 9. Comprehensions</li>
+                <!-- Add more as you build them -->
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            <div class="lesson-header">
+                <h2>Lists & Tuples</h2>
+                <p>Master Python's fundamental sequence types — mutable lists and immutable tuples</p>
+            </div>
+
+            <div class="lesson-body">
+                <h3>Learning Objectives</h3>
+                <ul style="margin-left: 2rem; margin-bottom: 1.5rem;">
+                    <li>Create and manipulate lists and tuples</li>
+                    <li>Use indexing, slicing, and common methods</li>
+                    <li>Understand mutability differences</li>
+                    <li>Apply lists and tuples in real scenarios</li>
+                </ul>
+
+                <h3>Lists — Mutable Sequences</h3>
+                <p>Lists are ordered, mutable collections that can hold mixed data types.</p>
+
+                <div class="code-block">
+# Creating a list\nfruits = ["apple", "banana", "orange"]\nnumbers = [1, 2, 3, 4, 5]\nmixed = [1, "hello", True, 3.14]\n\n# Common operations\nfruits.append("grape")\nfruits.remove("banana")\nprint(fruits[0])  # apple\nprint(fruits[-1])  # last item
+                </div>
+
+                <h3>Tuples — Immutable Sequences</h3>
+                <p>Tuples are ordered, immutable collections — perfect for fixed data.</p>
+
+                <div class="code-block">
+coordinates = (10.0, 20.0)\ncolors = ("red", "green", "blue")\n\n# Tuples are immutable\n# colors[0] = "yellow"  # Error!\n\n# Single item tuple needs comma\nsingle = (42,)
+                </div>
+
+                <h3>List vs Tuple Diagram</h3>
+                <img src="https://www.pythontutorial.net/wp-content/uploads/2020/10/Python-List-vs-Tuple.png" alt="Visual comparison of mutable lists vs immutable tuples in Python" class="diagram">
+
+                <h3>Slicing</h3>
+                <p>Extract portions of sequences using slice notation [start:end:step].</p>
+
+                <div class="code-block">
+numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\nprint(numbers[2:6])    # [2, 3, 4, 5]\nprint(numbers[:5])     # first 5\nprint(numbers[5:])     # from index 5\nprint(numbers[::-1])   # reverse\nprint(numbers[::2])    # every second item
+                </div>
+
+                <h3>Common List Methods</h3>
+                <table style="width:100%; border-collapse: collapse; margin: 1.5rem 0;">
+                    <tr style="background: rgba(79,70,229,0.1);">
+                        <th style="padding:1rem; text-align:left;">Method</th>
+                        <th style="padding:1rem; text-align:left;">Description</th>
+                        <th style="padding:1rem; text-align:left;">Example</th>
+                    </tr>
+                    <tr>
+                        <td style="padding:1rem; border-bottom:1px solid var(--border);">append()</td>
+                        <td style="padding:1rem; border-bottom:1px solid var(--border);">Add item to end</td>
+                        <td style="padding:1rem; border-bottom:1px solid var(--border);">list.append(x)</td>
+                    </tr>
+                    <tr style="background: rgba(79,70,229,0.05);">
+                        <td style="padding:1rem; border-bottom:1px solid var(--border);">extend()</td>
+                        <td style="padding:1rem; border-bottom:1px solid var(--border);">Add multiple items</td>
+                        <td style="padding:1rem; border-bottom:1px solid var(--border);">list.extend([1,2])</td>
+                    </tr>
+                    <tr>
+                        <td style="padding:1rem; border-bottom:1px solid var(--border);">sort()</td>
+                        <td style="padding:1rem; border-bottom:1px solid var(--border);">Sort in place</td>
+                        <td style="padding:1rem; border-bottom:1px solid var(--border);">list.sort()</td>
+                    </tr>
+                    <tr style="background: rgba(79,70,229,0.05);">
+                        <td style="padding:1rem;">pop()</td>
+                        <td style="padding:1rem;">Remove and return item</td>
+                        <td style="padding:1rem;">list.pop()</td>
+                    </tr>
+                </table>
+
+                <h3>Try It Yourself</h3>
+                <p>Create a shopping list, add/remove items, sort it, and print slices.</p>
+
+                <div class="editor-container" id="editor"></div>
+
+                <button id="runBtn" class="btn btn-success">Run Code</button>
+                <pre id="output"></pre>
+
+                <h3>Practice Challenge</h3>
+                <p>Write a program that:</p>
+                <ul style="margin-left: 2rem; margin-bottom: 1.5rem;">
+                    <li>Creates a list of student grades</li>
+                    <li>Calculates average, highest, and lowest</li>
+                    <li>Creates a tuple of passing students (grade >= 70)</li>
+                    <li>Prints formatted results</li>
+                </ul>
+
+                <div class="navigation">
+                    <a href="../04-functions/lesson6-advanced-functions.html" class="btn">← Previous Lesson</a>
+                    <button id="markComplete" class="btn">Mark as Complete</button>
+                    <a href="lesson8-dictionaries-sets.html" class="btn">Next Lesson →</a>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <footer>
+        <p>© <script>document.write(new Date().getFullYear())</script> DataFog Studios™. Created with love by Hassan Mohamed. All rights reserved.</p>
+        <a href="../../../index.html">Back to Home</a>
+    </footer>
+
+    <script src="../../../main.js"></script>
+
+    <script>
+        // Monaco Editor Setup
+        require.config({ paths: { 'vs': 'https://cdn.jsdelivr.net/npm/monaco-editor@0.44.0/min/vs' }});
+        require(['vs/editor/editor.main'], function() {
+            window.editor = monaco.editor.create(document.getElementById('editor'), {
+                value: `# Shopping List Challenge\n\nshopping = ["milk", "bread", "eggs", "butter"]\n\n# Add items\nshopping.append("cheese")\nshopping.extend(["apples", "bananas"])\n\n# Remove item\nshopping.remove("bread")\n\n# Sort alphabetically\nshopping.sort()\n\n# Print first 3 items and last 2 items\nprint("First 3:", shopping[:3])\nprint("Last 2:", shopping[-2:])\nprint("Full sorted list:", shopping)`,
+                language: 'python',
+                theme: 'vs-dark',
+                automaticLayout: true,
+                fontSize: 16,
+                minimap: { enabled: false }
+            });
+        });
+
+        // Run Code with Skulpt
+        const runBtn = document.getElementById('runBtn');
+        const output = document.getElementById('output');
+
+        function runCode() {
+            output.textContent = "Running your code...\n\n";
+            const code = window.editor.getValue();
+
+            Skulpt.config.configure({
+                output: (text) => { output.textContent += text; },
+                read: (filename) => { throw new Error("File reading not supported"); }
+            });
+
+            Skulpt.run(code).then(() => {
+                output.textContent += "\n\nExecution complete!";
+            }).catch((e) => {
+                output.textContent += `\nError: ${e.toString()}`;
+            });
+        }
+
+        runBtn.addEventListener('click', runCode);
+
+        // Load Skulpt
+        const skulptScript = document.createElement('script');
+        skulptScript.src = "https://www.skulpt.org/js/skulpt.min.js";
+        document.head.appendChild(skulptScript);
+
+        const skulptStdlib = document.createElement('script');
+        skulptStdlib.src = "https://www.skulpt.org/js/skulpt-stdlib.js";
+        document.head.appendChild(skulptStdlib);
+
+        // Mark as Complete
+        const markComplete = document.getElementById('markComplete');
+        const lessonKey = 'python-lesson7-complete';
+
+        if (localStorage.getItem(lessonKey) === 'true') {
+            markComplete.textContent = "Completed ✓";
+            markComplete.disabled = true;
+        }
+
+        markComplete.addEventListener('click', () => {
+            localStorage.setItem(lessonKey, 'true');
+            markComplete.textContent = "Completed ✓";
+            markComplete.disabled = true;
+        });
+    </script>
+</body>
+</html>

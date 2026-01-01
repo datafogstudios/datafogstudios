@@ -148,16 +148,16 @@
 
     <script>
         const courses = [
-            { title: "Python Mastery", lang: "Python", difficulty: "Beginner", duration: "40", badge: "Most Popular", desc: "Complete Python from basics to advanced projects", img: "https://cdn.autonomous.ai/production/ecm/240425/Dual-Monitor-Setup-Ideas-Boost-Productivity-Efficiency11.webp" },
-            { title: "JavaScript Full Stack", lang: "JavaScript", difficulty: "Intermediate", duration: "50", badge: "Web Essential", desc: "Frontend, Backend, and modern frameworks", img: "https://cdn.autonomous.ai/production/ecm/240425/Dual-Monitor-Setup-Ideas-Boost-Productivity-Efficiency6.webp" },
-            { title: "Java Enterprise Development", lang: "Java", difficulty: "Advanced", duration: "45", badge: "Enterprise Leader", desc: "Build scalable backend systems and Android apps", img: "https://cdn.autonomous.ai/production/ecm/250614/blackdesksetup(1).webp" },
-            { title: "C Systems Programming", lang: "C", difficulty: "Advanced", duration: "35", badge: "Systems Foundation", desc: "Low-level programming and operating systems", img: "https://www.makerstations.io/content/images/2023/11/meteor-desk-setup-0.jpg" },
-            { title: "C++ Modern Development", lang: "C++", difficulty: "Advanced", duration: "40", badge: "Performance King", desc: "Game development and high-performance applications", img: "https://www.makerstations.io/content/images/2023/11/meteor-desk-setup-02.jpg" },
-            { title: "C# and .NET Mastery", lang: "C#", difficulty: "Intermediate", duration: "38", badge: "Microsoft Ecosystem", desc: "Windows apps and Unity game development", img: "https://i.ytimg.com/vi/fLPi7fIZEmw/maxresdefault.jpg" },
-            { title: "Go for Cloud Engineers", lang: "Go", difficulty: "Intermediate", duration: "30", badge: "Cloud Native", desc: "Microservices and DevOps tools", img: "https://cdn.autonomous.ai/production/ecm/240425/Dual-Monitor-Setup-Ideas-Boost-Productivity-Efficiency1.webp" },
-            { title: "Rust Systems Programming", lang: "Rust", difficulty: "Advanced", duration: "35", badge: "Fastest Growing", desc: "Safe concurrent systems and WebAssembly", img: "https://image.benq.com/is/image/benqco/10-5?$ResponsivePreset$" },
-            { title: "TypeScript Enterprise", lang: "TypeScript", difficulty: "Intermediate", duration: "32", badge: "Modern Web", desc: "Large-scale JavaScript applications", img: "https://www.makerstations.io/content/images/2023/11/meteor-desk-setup-01.jpg" },
-            { title: "PHP Web Development", lang: "PHP", difficulty: "Beginner", duration: "28", badge: "Web Backend Classic", desc: "WordPress, Laravel, and dynamic sites", img: "https://thumbor.autonomous.ai/jxevPta-YTrwx8h8ECDx80w2dxA=/450x253/smart/https://cdn.autonomous.ai/static/upload/images/new_post/5-desk-setup-with-laptop-monitor-2852-1632024309945.jpg" }
+            { title: "Python Mastery", lang: "Python", difficulty: "Beginner", duration: "40", badge: "Most Popular", desc: "Complete Python from basics to advanced projects", img: "https://cdn.autonomous.ai/production/ecm/240425/Dual-Monitor-Setup-Ideas-Boost-Productivity-Efficiency11.webp", link: "courses/python.html" },
+            { title: "JavaScript Full Stack", lang: "JavaScript", difficulty: "Intermediate", duration: "50", badge: "Web Essential", desc: "Frontend, Backend, and modern frameworks", img: "https://cdn.autonomous.ai/production/ecm/240425/Dual-Monitor-Setup-Ideas-Boost-Productivity-Efficiency6.webp", link: "courses/javascript.html" },
+            { title: "Java Enterprise Development", lang: "Java", difficulty: "Advanced", duration: "45", badge: "Enterprise Leader", desc: "Build scalable backend systems and Android apps", img: "https://cdn.autonomous.ai/production/ecm/250614/blackdesksetup(1).webp", link: "courses/java.html" },
+            { title: "C Systems Programming", lang: "C", difficulty: "Advanced", duration: "35", badge: "Systems Foundation", desc: "Low-level programming and operating systems", img: "https://www.makerstations.io/content/images/2023/11/meteor-desk-setup-0.jpg", link: "courses/c.html" },
+            { title: "C++ Modern Development", lang: "C++", difficulty: "Advanced", duration: "40", badge: "Performance King", desc: "Game development and high-performance applications", img: "https://www.makerstations.io/content/images/2023/11/meteor-desk-setup-02.jpg", link: "courses/cpp.html" },
+            { title: "C# and .NET Mastery", lang: "C#", difficulty: "Intermediate", duration: "38", badge: "Microsoft Ecosystem", desc: "Windows apps and Unity game development", img: "https://i.ytimg.com/vi/fLPi7fIZEmw/maxresdefault.jpg", link: "courses/csharp.html" },
+            { title: "Go for Cloud Engineers", lang: "Go", difficulty: "Intermediate", duration: "30", badge: "Cloud Native", desc: "Microservices and DevOps tools", img: "https://cdn.autonomous.ai/production/ecm/240425/Dual-Monitor-Setup-Ideas-Boost-Productivity-Efficiency1.webp", link: "courses/go.html" },
+            { title: "Rust Systems Programming", lang: "Rust", difficulty: "Advanced", duration: "35", badge: "Fastest Growing", desc: "Safe concurrent systems and WebAssembly", img: "https://image.benq.com/is/image/benqco/10-5?$ResponsivePreset$", link: "courses/rust.html" },
+            { title: "TypeScript Enterprise", lang: "TypeScript", difficulty: "Intermediate", duration: "32", badge: "Modern Web", desc: "Large-scale JavaScript applications", img: "https://www.makerstations.io/content/images/2023/11/meteor-desk-setup-01.jpg", link: "courses/typescript.html" },
+            { title: "PHP Web Development", lang: "PHP", difficulty: "Beginner", duration: "28", badge: "Web Backend Classic", desc: "WordPress, Laravel, and dynamic sites", img: "https://thumbor.autonomous.ai/jxevPta-YTrwx8h8ECDx80w2dxA=/450x253/smart/https://cdn.autonomous.ai/static/upload/images/new_post/5-desk-setup-with-laptop-monitor-2852-1632024309945.jpg", link: "courses/php.html" }
         ];
 
         const grid = document.getElementById('courseGrid');
@@ -180,8 +180,8 @@
                         <div class="course-badge">${course.badge}</div>
                         <p>${course.desc}</p>
                         <div>
-                            <a href="#" class="btn">Enroll Free</a>
-                            <a href="#" class="btn btn-preview">Preview</a>
+                            <a href="${course.link}" class="btn">Start Course</a>
+                            <a href="${course.link}" class="btn btn-preview">Preview</a>
                         </div>
                     </div>
                 `;

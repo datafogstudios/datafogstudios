@@ -9,58 +9,102 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
-        body { font-family: 'Open Sans', sans-serif; background: #f8fafc; color: #1e293b; margin: 0; }
-        .hero { height: 50vh; background: linear-gradient(rgba(248,250,252,0.9), rgba(248,250,252,0.8)), url('https://static.vecteezy.com/system/resources/previews/025/440/910/non_2x/donation-and-volunteers-work-concept-tiny-people-help-charity-and-sharing-hope-modern-flat-cartoon-style-illustration-vector.jpg') center/cover no-repeat; display: flex; align-items: center; justify-content: center; text-align: center; }
-        .hero h1 { font-family: 'Montserrat', sans-serif; font-size: 3.5rem; font-weight: 900; color: white; text-shadow: 0 4px 20px rgba(0,0,0,0.5); }
-        .container { max-width: 1000px; margin: 0 auto; padding: 4rem 2rem; text-align: center; }
-        .subtitle { font-size: 1.2rem; color: #64748b; margin-bottom: 3rem; max-width: 800px; margin-left: auto; margin-right: auto; }
-        .support-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2.5rem; }
-        .support-card { background: white; padding: 3rem; border-radius: 24px; box-shadow: 0 15px 50px rgba(0,0,0,0.1); transition: .3s; }
+        :root {
+            --primary: #4f46e5;
+            --accent: #f59e0b;
+            --light-bg: #f8fafc;
+            --light-card: #ffffff;
+            --dark-text: #1e293b;
+            --text-muted: #64748b;
+            --header-height: 80px;
+        }
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --light-bg: #0f172a;
+                --light-card: #1e293b;
+                --dark-text: #f8fafc;
+                --text-muted: #94a3b8;
+            }
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Open Sans', sans-serif; background: var(--light-bg); color: var(--dark-text); line-height: 1.6; padding-top: var(--header-height); }
+        .header { background: rgba(255,255,255,0.92); backdrop-filter: blur(20px); position: fixed; width: 100%; top: 0; z-index: 1000; border-bottom: 1px solid var(--border); box-shadow: 0 4px 30px rgba(0,0,0,0.08); height: var(--header-height); }
+        .nav-container { max-width: 1400px; margin: auto; display: flex; justify-content: space-between; align-items: center; padding: 0 2rem; height: 100%; }
+        .logo { font-size: 1.8rem; font-weight: 900; font-family: 'Montserrat', sans-serif; background: linear-gradient(135deg, var(--primary), #8b5cf6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .nav-links a { color: var(--dark-text); text-decoration: none; font-weight: 500; margin-left: 2rem; font-size: 1rem; }
+        .nav-buttons { display: flex; align-items: center; gap: 1rem; }
+        .support-btn, .dashboard-btn { padding: 0.6rem 1.6rem; border-radius: 50px; font-weight: 600; transition: .3s; text-decoration: none; }
+        .support-btn { background: linear-gradient(135deg, var(--accent), #ec4899); color: white; }
+        .dashboard-btn { background: linear-gradient(135deg, var(--primary), #4338ca); color: white; }
+        .hero { min-height: 45vh; background: linear-gradient(rgba(248,250,252,0.95), rgba(248,250,252,0.85)), url('https://static.vecteezy.com/system/resources/previews/025/440/910/non_2x/donation-and-volunteers-work-concept-tiny-people-help-charity-and-sharing-hope-modern-flat-cartoon-style-illustration-vector.jpg') center/cover no-repeat; display: flex; align-items: center; justify-content: center; text-align: center; padding: 0 1.5rem; }
+        .hero h1 { font-family: 'Montserrat', sans-serif; font-size: clamp(2.2rem, 5.5vw, 3.4rem); font-weight: 900; color: var(--dark-text); margin-bottom: 0.5rem; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 2rem; text-align: center; }
+        .support-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+        .support-card { background: var(--light-card); padding: 2.5rem; border-radius: 24px; box-shadow: 0 15px 50px rgba(0,0,0,0.1); transition: .3s; }
         .support-card:hover { transform: translateY(-10px); }
         .icon { font-size: 4rem; margin-bottom: 1.5rem; }
-        .btn { padding: 1rem 2.5rem; border-radius: 50px; font-weight: 600; text-decoration: none; transition: .3s; }
-        .btn-primary { background: #4f46e5; color: white; }
-        .btn-primary:hover { background: #4338ca; transform: translateY(-4px); }
+        .btn { padding: 1rem 2.5rem; border-radius: 50px; font-weight: 600; text-decoration: none; transition: .3s; background: var(--primary); color: white; }
+        .btn:hover { background: #4338ca; transform: translateY(-4px); }
         .back-btn { margin-top: 4rem; }
-        @media (max-width: 768px) { .hero h1 { font-size: 2.8rem; } .support-grid { grid-template-columns: 1fr; } }
+        footer { background: #f1f5f9; padding: 3rem 2rem 2rem; margin-top: 3rem; text-align: center; color: var(--text-muted); font-size: 0.9rem; }
+        @media (max-width: 768px) { .support-grid { grid-template-columns: 1fr; } }
     </style>
 </head>
-<footer style="background:#f1f5f9; padding:4rem 2rem 2rem; margin-top:4rem; text-align:center; color:#64748b; font-size:0.9rem;">
-    <p>© <script>document.write(new Date().getFullYear())</script> DataFog Studios™. Created with love by Hassan Mohamed. All rights reserved.</p>
-    <a href="../index.html" style="color:#4f46e5; text-decoration:none; font-weight:600;">Back to Home</a>
-</footer>
-<script src="../main.js"></script>
 <body>
+    <header class="header">
+        <div class="nav-container">
+            <div class="logo">DataFog Studios™</div>
+            <nav class="nav-links">
+                <a href="../index.html">Home</a>
+                <a href="../courses.html">Courses</a>
+                <a href="../index.html#features">Features</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+            <div class="nav-buttons">
+                <a href="../dashboard.html" class="dashboard-btn">My Dashboard</a>
+                <a href="support.html" class="support-btn">Support Us</a>
+            </div>
+        </div>
+    </header>
+
     <section class="hero">
         <h1>Support DataFog Studios™</h1>
     </section>
+
     <div class="container">
         <i class="fas fa-heart" style="font-size:4rem; color:#ec4899;"></i>
-        <p class="subtitle">Your contribution helps us keep premium programming education 100% free for everyone worldwide. Every donation makes a difference.</p>
+        <p style="font-size:1.2rem; color:var(--text-muted); margin:2rem auto; max-width:800px;">Your contribution helps us keep premium programming education 100% free for everyone worldwide. Every donation makes a difference.</p>
 
         <div class="support-grid">
             <div class="support-card">
                 <i class="fas fa-gift icon" style="color:#10b981;"></i>
                 <h3>One-Time Donation</h3>
                 <p>Make a single contribution of any amount to support our mission.</p>
-                <a href="#" class="btn btn-primary">Donate Now</a>
+                <a href="#" class="btn">Donate Now</a>
             </div>
             <div class="support-card">
                 <i class="fas fa-sync-alt icon" style="color:#8b5cf6;"></i>
                 <h3>Monthly Support</h3>
                 <p>Become a recurring supporter and help sustain long-term growth.</p>
-                <a href="#" class="btn btn-primary">Subscribe</a>
+                <a href="#" class="btn">Subscribe</a>
             </div>
             <div class="support-card">
                 <i class="fab fa-bitcoin icon" style="color:#f59e0b;"></i>
                 <h3>Crypto Donation</h3>
                 <p>Support us with Bitcoin, Ethereum, or other cryptocurrencies.</p>
-                <a href="#" class="btn btn-primary">Donate Crypto</a>
+                <a href="#" class="btn">Donate Crypto</a>
             </div>
         </div>
 
         <p>Thank you for believing in free education. Together, we're building the future of learning.</p>
-        <a href="../index.html" class="btn btn-primary back-btn">Back to Home</a>
+        <a href="../index.html" class="btn back-btn">Back to Home</a>
     </div>
+
+    <footer>
+        <p>© <script>document.write(new Date().getFullYear())</script> DataFog Studios™. Created with love by Hassan Mohamed. All rights reserved.</p>
+        <a href="../index.html">Back to Home</a>
+    </footer>
+
+    <script src="../main.js"></script>
 </body>
 </html>

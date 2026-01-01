@@ -53,19 +53,15 @@
         .progress-circle span { font-size: 1.8rem; font-weight: 900; font-family: 'Montserrat', sans-serif; color: var(--dark-text); }
         .streak { font-size: 2.8rem; font-weight: 900; font-family: 'Montserrat', sans-serif; color: var(--success); margin: 0.5rem 0; }
         .courses-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.6rem; margin-bottom: 2rem; }
-        .course-card { background: var(--light-card); border-radius: 18px; padding: 1.4rem; box-shadow: 0 8px 30px rgba(0,0,0,0.08); border: 1px solid var(--border); transition: .3s; }
-        .course-card:hover { transform: translateY(-6px); }
-        .progress-bar { height: 10px; background: #e2e8f0; border-radius: 10px; overflow: hidden; margin: 1rem 0; }
-        .progress-fill { height: 100%; background: linear-gradient(135deg, var(--primary), var(--success)); border-radius: 10px; width: var(--fill, 0%); transition: width 0.8s ease; }
+        .empty-state { grid-column: 1 / -1; text-align: center; padding: 3rem; }
+        .empty-state i { font-size: 4rem; color: var(--primary); margin-bottom: 1rem; }
+        .empty-state p { font-size: 1.2rem; color: var(--text-muted); margin-bottom: 1.5rem; }
         .achievements-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: 1.4rem; }
         .achievement { text-align: center; opacity: var(--achieved, 0.3); transition: .3s; }
         .achievement.unlocked { opacity: 1; }
         .achievement i { font-size: 2.8rem; color: var(--accent); margin-bottom: 0.5rem; }
         .btn { background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: white; padding: 0.7rem 1.6rem; border-radius: 50px; font-weight: 600; text-decoration: none; display: inline-block; transition: .3s; font-size: 0.95rem; }
         .btn:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(79,70,229,0.3); }
-        .empty-state { grid-column: 1 / -1; text-align: center; padding: 3rem; }
-        .empty-state i { font-size: 4rem; color: var(--primary); margin-bottom: 1rem; }
-        .empty-state p { font-size: 1.2rem; color: var(--text-muted); margin-bottom: 1.5rem; }
         footer { background: #f1f5f9; padding: 3rem 2rem 2rem; margin-top: 2rem; text-align: center; color: var(--text-muted); font-size: 0.9rem; }
         @media (max-width: 992px) { .grid-2 { grid-template-columns: 1fr; } }
         @media (max-width: 768px) { .courses-grid { grid-template-columns: 1fr; } }
@@ -166,7 +162,6 @@
     <script src="main.js"></script>
 
     <script>
-        // Dynamically populate wishlist from localStorage
         const wishlistContainer = document.getElementById('wishlist');
         const wishlist = JSON.parse(localStorage.getItem('wishlist') || '[]');
 
@@ -180,7 +175,6 @@
             `;
         } else {
             wishlistContainer.innerHTML = '';
-            // Simple mock data for display (in production, pull from full course list)
             const mockCourses = {
                 "Python Mastery": { img: "https://cdn.autonomous.ai/production/ecm/240425/Dual-Monitor-Setup-Ideas-Boost-Productivity-Efficiency11.webp", desc: "Complete Python from basics to advanced" },
                 "JavaScript Full Stack": { img: "https://cdn.autonomous.ai/production/ecm/240425/Dual-Monitor-Setup-Ideas-Boost-Productivity-Efficiency6.webp", desc: "Frontend, Backend, and modern frameworks" },

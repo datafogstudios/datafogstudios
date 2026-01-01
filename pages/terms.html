@@ -9,51 +9,88 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
-        body { font-family: 'Open Sans', sans-serif; background: #f8fafc; color: #1e293b; margin: 0; padding-top: 80px; }
-        .container { max-width: 900px; margin: 0 auto; padding: 4rem 2rem; line-height: 1.8; }
-        h1 { font-family: 'Montserrat', sans-serif; font-size: 3rem; text-align: center; margin-bottom: 1rem; }
-        h2 { font-family: 'Montserrat', sans-serif; font-size: 1.8rem; margin: 2.5rem 0 1rem; color: #4f46e5; }
-        p { margin-bottom: 1.5rem; color: #475569; }
-        .icon { text-align: center; font-size: 4rem; color: #4f46e5; margin-bottom: 2rem; }
-        .btn { display: block; width: fit-content; margin: 3rem auto 0; padding: 1rem 2rem; background: #4f46e5; color: white; text-decoration: none; border-radius: 50px; font-weight: 600; }
-        @media (max-width: 768px) {
-            h1 { font-size: 2.5rem; }
-            .container { padding: 3rem 1.5rem; }
+        :root {
+            --primary: #4f46e5;
+            --light-bg: #f8fafc;
+            --light-card: #ffffff;
+            --dark-text: #1e293b;
+            --text-muted: #64748b;
+            --header-height: 80px;
         }
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --light-bg: #0f172a;
+                --light-card: #1e293b;
+                --dark-text: #f8fafc;
+                --text-muted: #94a3b8;
+            }
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Open Sans', sans-serif; background: var(--light-bg); color: var(--dark-text); line-height: 1.8; padding-top: var(--header-height); }
+        .header { background: rgba(255,255,255,0.92); backdrop-filter: blur(20px); position: fixed; width: 100%; top: 0; z-index: 1000; border-bottom: 1px solid var(--border); box-shadow: 0 4px 30px rgba(0,0,0,0.08); height: var(--header-height); }
+        .nav-container { max-width: 1400px; margin: auto; display: flex; justify-content: space-between; align-items: center; padding: 0 2rem; height: 100%; }
+        .logo { font-size: 1.8rem; font-weight: 900; font-family: 'Montserrat', sans-serif; background: linear-gradient(135deg, var(--primary), #8b5cf6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .nav-links a { color: var(--dark-text); text-decoration: none; font-weight: 500; margin-left: 2rem; font-size: 1rem; }
+        .nav-buttons { display: flex; align-items: center; gap: 1rem; }
+        .support-btn, .dashboard-btn { padding: 0.6rem 1.6rem; border-radius: 50px; font-weight: 600; transition: .3s; text-decoration: none; }
+        .support-btn { background: linear-gradient(135deg, #f59e0b, #ec4899); color: white; }
+        .dashboard-btn { background: linear-gradient(135deg, var(--primary), #4338ca); color: white; }
+        .hero { min-height: 45vh; background: #e0e7ff; display: flex; align-items: center; justify-content: center; text-align: center; padding: 0 1.5rem; }
+        .hero h1 { font-family: 'Montserrat', sans-serif; font-size: clamp(2.2rem, 5.5vw, 3.4rem); font-weight: 900; color: var(--dark-text); margin-bottom: 0.5rem; }
+        .container { max-width: 900px; margin: 0 auto; padding: 2rem; background: var(--light-card); border-radius: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.08); margin-top: -4rem; position: relative; z-index: 10; }
+        h2 { font-family: 'Montserrat', sans-serif; font-size: 1.8rem; margin: 2.5rem 0 1rem; color: var(--primary); }
+        p { margin-bottom: 1.5rem; color: var(--text-muted); }
+        .btn { display: block; width: fit-content; margin: 3rem auto 0; padding: 1rem 2rem; background: var(--primary); color: white; text-decoration: none; border-radius: 50px; font-weight: 600; }
+        footer { background: #f1f5f9; padding: 3rem 2rem 2rem; margin-top: 3rem; text-align: center; color: var(--text-muted); font-size: 0.9rem; }
     </style>
 </head>
-<footer style="background:#f1f5f9; padding:4rem 2rem 2rem; margin-top:4rem; text-align:center; color:#64748b; font-size:0.9rem;">
-    <p>© <script>document.write(new Date().getFullYear())</script> DataFog Studios™. Created with love by Hassan Mohamed. All rights reserved.</p>
-    <a href="../index.html" style="color:#4f46e5; text-decoration:none; font-weight:600;">Back to Home</a>
-</footer>
-<script src="../main.js"></script>
 <body>
+    <header class="header">
+        <div class="nav-container">
+            <div class="logo">DataFog Studios™</div>
+            <nav class="nav-links">
+                <a href="../index.html">Home</a>
+                <a href="../courses.html">Courses</a>
+                <a href="../index.html#features">Features</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+            <div class="nav-buttons">
+                <a href="../dashboard.html" class="dashboard-btn">My Dashboard</a>
+                <a href="support.html" class="support-btn">Support Us</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div>
+            <i class="fas fa-file-contract" style="font-size:4rem; color:var(--primary); margin-bottom:1rem;"></i>
+            <h1>Terms of Service</h1>
+        </div>
+    </section>
+
     <div class="container">
-        <i class="fas fa-file-contract icon"></i>
-        <h1>Terms of Service</h1>
-        <p style="text-align:center; color:#64748b;">Last updated: December 2025</p>
-
-        <p>By using DataFog Studios™, you agree to these Terms of Service.</p>
-
+        <p style="text-align:center; color:var(--text-muted);">Last updated: January 2026</p>
+        <p>By accessing DataFog Studios™, you agree to be bound by these Terms of Service.</p>
         <h2>Use of Content</h2>
-        <p>All course materials are free for personal learning and non-commercial use. You may not redistribute, sell, or create derivative commercial products from our content without permission.</p>
-
+        <p>All course materials are for personal, non-commercial use only. You may not redistribute or sell content.</p>
+        <h2>Free Access</h2>
+        <p>All courses and materials are provided free of charge. We reserve the right to modify or discontinue access.</p>
         <h2>User Conduct</h2>
-        <p>You agree to use the platform respectfully and not engage in any harmful or illegal activity.</p>
-
+        <p>You agree not to use the platform for unlawful purposes or to interfere with its operation.</p>
         <h2>Intellectual Property</h2>
-        <p>All content on DataFog Studios™ is protected by copyright. The platform and its original content are owned by Hassan Mohamed.</p>
-
+        <p>All content is owned by DataFog Studios™ and protected by copyright.</p>
         <h2>Limitation of Liability</h2>
-        <p>DataFog Studios™ is provided "as is" without warranties. We are not liable for any damages arising from use of the platform.</p>
-
+        <p>The platform is provided "as is" without warranties of any kind.</p>
         <h2>Changes to Terms</h2>
-        <p>We may modify these terms at any time. Continued use of the platform constitutes acceptance of changes.</p>
-
-        <h2>Contact</h2>
-        <p>For questions about these terms, contact us at howardteam54@gmail.com.</p>
-
+        <p>We may update these terms. Continued use constitutes acceptance.</p>
         <a href="../index.html" class="btn">Back to Home</a>
     </div>
+
+    <footer>
+        <p>© <script>document.write(new Date().getFullYear())</script> DataFog Studios™. Created with love by Hassan Mohamed. All rights reserved.</p>
+        <a href="../index.html">Back to Home</a>
+    </footer>
+
+    <script src="../main.js"></script>
 </body>
 </html>
