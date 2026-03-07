@@ -1,11 +1,16 @@
 import { navigate } from '@/lib/router'
+import { useTheme } from '@/lib/theme-context'
+import { Moon, Sun } from 'lucide-react'
 
 export function Navbar({ pathname }: { pathname: string }) {
+  const { theme, toggleTheme } = useTheme()
+
   const navItems = [
     { label: 'Home', path: '/' },
     { label: 'Products', path: '/products' },
     { label: 'Magazine', path: '/magazine' },
     { label: 'About', path: '/about' },
+    { label: 'Contact', path: '/contact' },
   ]
 
   return (
@@ -33,6 +38,18 @@ export function Navbar({ pathname }: { pathname: string }) {
                 {item.label}
               </button>
             ))}
+
+            <button
+              onClick={toggleTheme}
+              className="ml-4 p-2 rounded-lg text-white/70 hover:text-white hover:bg-white/10 transition"
+              aria-label="Toggle theme"
+            >
+              {theme === 'dark' ? (
+                <Sun size={20} />
+              ) : (
+                <Moon size={20} />
+              )}
+            </button>
           </div>
         </div>
       </div>

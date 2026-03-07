@@ -1,7 +1,8 @@
-import { Suspense } from 'react'
+import { Suspense, useEffect } from 'react'
 import { MainLayout } from '@/layouts/MainLayout'
 import { normalizePath, usePathname, matchRoute } from '@/lib/router'
 import { routes, routeComponents } from '@/routes/Router'
+import { updateMetaTags, injectStructuredData, createOrganizationSchema } from '@/lib/seo-utils'
 import NotFound from '@/pages/NotFound'
 
 function App() {
@@ -17,22 +18,35 @@ function App() {
 
   const Page = currentRoute ? routeComponents[currentRoute.path] : NotFound
 
-  React.useEffect(() => {
+  useEffect(() => {
     const title = currentRoute?.meta.title ?? 'Page not found | Datafog Studios'
     const description =
       currentRoute?.meta.description ??
       'The requested page could not be found on the Datafog Studios website.'
 
-    document.title = title
+    // Update meta tags using SEO utility
+    updateMetaTags({
+      title,
+      description,
+      url: window.location.href,
+      type: currentRoute ? 'website' : 'error',
+    })
 
-    let descriptionMeta = document.querySelector('meta[name="description"]')
-    if (!descriptionMeta) {
-      descriptionMeta = document.createElement('meta')
-      descriptionMeta.setAttribute('name', 'description')
-      document.head.appendChild(descriptionMeta)
-    }
-    descriptionMeta.setAttribute('content', description)
-  }, [currentRoute])
+    // Scroll to top when route changes
+    window.scrollTo(0, 0)
+  }, [currentRoute, pathname])
+
+  // Inject organization schema on mount
+  useEffect(() => {
+    injectStructuredData(createOrganizationSchema())
+  }, [])
+
+  // Track page views with simple events
+  useEffect(() => {
+    // Placeholder for Google Analytics or other tracking
+    // In production, add: gtag('config', 'GA_MEASUREMENT_ID', { page_path: pathname });
+    console.log('Page view:', pathname)
+  }, [pathname])
 
   return (
     <MainLayout pathname={pathname}>

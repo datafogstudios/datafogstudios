@@ -1,5 +1,6 @@
 import { Navbar } from '@/components/Navbar'
 import { Footer } from '@/components/Footer'
+import CookieConsent from '@/components/CookieConsent'
 
 type MainLayoutProps = {
   pathname: string
@@ -12,6 +13,7 @@ export function MainLayout({ pathname, children }: MainLayoutProps) {
       <Navbar pathname={pathname} />
       <main className="flex-1">{children}</main>
       <Footer />
+      <CookieConsent />
     </div>
   )
 }

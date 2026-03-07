@@ -50,6 +50,14 @@ export const routes: RouteDefinition[] = [
       description: 'Learn about Datafog Studios, our mission, and vision.',
     },
   },
+  {
+    path: '/contact',
+    loader: () => import('@/pages/Contact'),
+    meta: {
+      title: 'Contact | Datafog Studios',
+      description: 'Get in touch with Datafog Studios. We\'d love to hear from you.',
+    },
+  },
 ]
 
 export const routeComponents = Object.fromEntries(
